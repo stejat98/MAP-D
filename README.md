@@ -1,9 +1,7 @@
 # MAP-D: Metabolic Atlas of Progression in Diabetes  
 
-This repository contains the refactored code used to build **MAP-D**, the **Metabolic Atlas of Progression in Diabetes**.  
+This repository contains the code used to build **MAP-D**, the **Metabolic Atlas of Progression in Diabetes**.  
 MAP-D integrates UK Biobank proteomic and clinical data with STEP 1/2 semaglutide intervention trials to chart stage-resolved protein associations across metabolic disease progression. It identifies treatment-responsive vs. treatment-intransigent proteins, builds predictive models, and maps therapeutic opportunities using DrugBank.  
-
-The repo is modularized to ensure transparency and reproducibility.
 
 ---
 
