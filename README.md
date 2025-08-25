@@ -40,7 +40,6 @@ mapd/
 │  └─ utils_common.R
 ├─ pipeline/
 │  ├─ Makefile                   # Workflow orchestration
-│  └─ _targets.R                 # Optional {targets} DAG
 └─ tests/
    └─ test_utils.R
 ```
