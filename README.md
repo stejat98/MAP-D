@@ -166,7 +166,7 @@ drug_results <- run_drug_target_analysis(pwas_results)
 
 ### External Validation Data
 
-- STEP1 & STEP2 validation dataset (`41591_2024_3355_MOESM3_ESM.xlsx`)
+- STEP1 & STEP2 validation dataset (https://www.nature.com/articles/s41591-024-03355-2#data-availability)
 
 ### Drug Database
 
