@@ -83,41 +83,6 @@ This test script will:
 
 **Expected output**: You should see ✓ marks for successful tests. If any test fails with ✗, check your R environment and dependencies.
 
-#### Run Full Pipeline
-
-Once the synthetic test passes, run the complete MAP-D analysis pipeline:
-
-```bash
-# Run full pipeline from raw data
-Rscript main_analysis.R --full-pipeline
-
-# Run with existing processed data
-Rscript main_analysis.R
-
-# Specify custom output directory
-Rscript main_analysis.R --output-dir results/my_analysis/
-```
-
-### Interactive Analysis
-
-For interactive analysis or custom modifications:
-
-```r
-# Load the pipeline
-source("main_analysis.R")
-
-# Run complete pipeline
-results <- run_mapd_pipeline(
-  run_full_pipeline = FALSE,
-  skip_data_preprocessing = FALSE,
-  results_directory = "results/"
-)
-
-# Access specific results
-metabolic_pwas <- results$metabolic_pwas
-lasso_models <- results$lasso_results
-drug_targets <- results$drug_analysis
-```
 
 ### Step-by-Step Analysis
 
