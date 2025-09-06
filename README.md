@@ -145,9 +145,7 @@ drug_results <- run_drug_target_analysis(pwas_results)
 
 ### External Validation Data
 
-- STEP1 validation dataset (`41591_2024_3355_MOESM3_ESM.xlsx`)
-- STEP2 validation dataset
-- GLP-1 intervention trial data
+- STEP1 & STEP2 validation dataset (`41591_2024_3355_MOESM3_ESM.xlsx`)
 
 ### Drug Database
 
