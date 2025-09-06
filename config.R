@@ -12,9 +12,9 @@ ANALYSIS_DATE <- Sys.Date()
 # DATA PATHS
 # =============================================================================
 
-# Base data directory (modify this path according to your system)
-BASE_DATA_DIR <- "/n/groups/patel/sivateja/UKB"
-RAW_DATA_DIR <- "/n/groups/patel/uk_biobank"
+# Base data directory (modify these paths according to your system)
+BASE_DATA_DIR <- ""
+RAW_DATA_DIR <- ""
 RESULTS_DIR <- "results"
 
 # UK Biobank data files
