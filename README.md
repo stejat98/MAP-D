@@ -12,10 +12,8 @@ MAP-D leverages proteomic data on 2,923 proteins measured in a median of 47,963 
 ## Key Features
 
 - **Comprehensive PWAS Analysis**: Protein-wide association studies across metabolic phenotypes and glycemic groups
-- **Machine Learning Integration**: LASSO regression modeling for predictive biomarker discovery
+- **Predicitive analysis**: LASSO regression modeling for predictive biomarker discovery
 - **Drug Target Discovery**: Integration with DrugBank for therapeutic target identification
-- **External Validation**: Cross-validation with independent datasets
-- **Reproducible Pipeline**: Fully automated analysis with comprehensive documentation
 
 
 MAP-D provides:
