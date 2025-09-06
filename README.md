@@ -312,7 +312,7 @@ gc()  # Garbage collection between major steps
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Data Availability
-
+- **UK Biobank Data**: The data from the UK Biobank that support the findings of this study are available upon application (https://www.ukbiobank.ac.uk/register-apply/).
 - **MAP-D Web Resource**: https://btierneyshiny.shinyapps.io/mapd-visualizer/
 - **Figshare Repository**: https://doi.org/10.6084/m9.figshare.30007306.v1
 - **GitHub Repository**: https://github.com/stejat98/MAP-D
