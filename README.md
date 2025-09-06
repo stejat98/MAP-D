@@ -136,12 +136,12 @@ drug_results <- run_drug_target_analysis(pwas_results)
    - Triglyceride/HDL ratio
    - Systolic and diastolic blood pressure
    - HbA1c levels
-   - Diabetes status
+   - Glycaemic status (Normoglycemic, Prediabetes, T2D)
 
 3. **Complication Outcomes**
-   - Cardiovascular disease (ICD-10 codes)
-   - Chronic kidney disease
-   - Non-alcoholic fatty liver disease
+   - Coronary artery disease (CAD)
+   - Chronic kidney disease (CKD)
+   - Non-alcoholic fatty liver disease (NAFLD)
 
 ### External Validation Data
 
