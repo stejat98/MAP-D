@@ -185,7 +185,7 @@ if (length(test_files) > 0) {
 }
 
 cat("\n=== Synthetic Data Test Complete ===\n")
-cat("If you see ✓ for all major tests, the refactoring is working correctly!\n")
+cat("If you see ✓ for all major tests, it is working correctly!\n")
 cat("\nNext steps:\n")
 cat("1. Update config.R with your actual data paths\n")
 cat("2. Test with your real data\n")
