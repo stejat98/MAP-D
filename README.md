@@ -307,29 +307,6 @@ CUSTOM_PHENOTYPES <- c("BMI", "waist_circumference", "body_fat_percentage")
 CUSTOM_DISEASE_CODES <- c("E11", "E111", "E112")  # T2D complications
 ```
 
-### Parallel Processing
-
-Enable parallel processing for large datasets:
-
-```r
-# In config.R
-N_CORES <- 8  # Set to desired number of cores
-
-# The pipeline automatically uses parallel processing where beneficial
-```
-
-### Memory Optimization
-
-For large datasets, consider:
-
-```r
-# Process data in chunks
-options(fst.use.index = TRUE)  # Enable FST indexing
-
-# Reduce memory usage
-gc()  # Garbage collection between major steps
-```
-
 
 ## License
 
