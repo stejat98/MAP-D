@@ -308,42 +308,6 @@ options(fst.use.index = TRUE)  # Enable FST indexing
 gc()  # Garbage collection between major steps
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-1. **Memory errors**: Reduce `N_CORES` or process smaller subsets
-2. **Missing data files**: Check paths in `config.R`
-3. **Package installation**: Ensure R version ≥ 4.0
-4. **DrugBank parsing**: Verify XML file integrity
-
-### Performance Optimization
-
-- Use SSD storage for large datasets
-- Enable parallel processing on multi-core systems
-- Consider cloud computing for very large analyses
-
-### Support
-
-For technical issues:
-1. Check the troubleshooting section
-2. Review error messages and log files
-3. Ensure all dependencies are installed
-4. Verify data file formats and paths
-
-## Citation
-
-If you use MAP-D in your research, please cite:
-
-```bibtex
-@article{mapd2024,
-  title={Mapping patient progression from a healthy metabolic state to Type 2 Diabetes provides opportunities for precision medicine-driven preventative interventions},
-  author={[Authors]},
-  journal={Nature Medicine},
-  year={2024},
-  doi={[DOI]}
-}
-```
 
 ## License
 
@@ -353,7 +317,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **MAP-D Web Resource**: https://btierneyshiny.shinyapps.io/mapd-visualizer/
 - **Figshare Repository**: https://doi.org/10.6084/m9.figshare.30007306.v1
-- **GitHub Repository**: [Repository URL]
+- **GitHub Repository**: https://github.com/stejat98/MAP-D
 
 ## Acknowledgments
 
@@ -362,14 +326,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - DrugBank database maintainers
 - R Core Team and package developers
 
-## Contact
-
-For questions about the analysis pipeline or collaboration opportunities:
-
-- **Primary Contact**: [Name] ([email])
-- **Corresponding Author**: [Name] ([email])
-- **Technical Issues**: Create an issue on GitHub
 
 ---
 
-**Note**: This pipeline was developed for the MAP-D study manuscript. While designed for reproducibility, some components may require adaptation for different datasets or research questions.
