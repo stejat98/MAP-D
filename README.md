@@ -21,7 +21,7 @@ MAP-D provides:
 1. **Proteomic signatures** that discriminate between patient subpopulations (e.g., obesity with normoglycemia vs. obesity with T2D)
 2. **Predictive models** with R² up to 0.8 for metabolic traits in T2D
 3. **Therapeutic insights** from GLP-1 agonist intervention trials
-4. **Drug repurposing opportunities** through "therapeutically intransient" protein identification
+4. **Drug repurposing opportunities** through "therapeutically intransigent" protein identification
 
 ## Installation
 
