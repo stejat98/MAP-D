@@ -54,8 +54,8 @@ lep_pqtls$effect_allele <- sapply(variant_parts, function(x) x[4])
 # 2. Define outcomes to test
 # -----------------------------------------------------------------------------
 outcomes <- list(
-  list(name = "BMI", strata = c("full", "prediabetes", "diabetes")),
-  list(name = "HbA1c", strata = c("full", "prediabetes", "diabetes"))
+  list(name = "BMI", strata = c("full")),
+  list(name = "HbA1c", strata = c("full"))
 )
 
 # -----------------------------------------------------------------------------

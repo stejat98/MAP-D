@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 # REGENIE inputs for pre-specified Olink proteins in *proteomics-only* EIDs, **BMI in covariates**
-# (apples-to-apples with BMI-adjusted ALST hallmarks GWAS for two-sample MR).
+# (apples-to-apples with the hallmark GWAS for two-sample MR).
 #
 # Sample split (unchanged from main pipeline):
 #   — protein phenotypes: eid ∈ Olink    (this script)
-#   — ALST hallmark:      eid ∉ Olink    (independent individuals for MR)
+#   — hallmark traits:    eid ∉ Olink    (independent individuals for MR)
 #
 # Olink panel note: **IGF1** and **CRP** have no matching `GENE;` row in coding143 — not in this panel;
 #   use external pQTL (e.g. deCODE) for MR for those analytes.
@@ -123,7 +123,7 @@ create_regenie_inputs_protein_bmi <- function(df_subset, phenotype_name, output_
     message("  SKIP: ", phenotype_name, " not in data")
     return(FALSE)
   }
-  cat("  ", basename(output_dir), ": BMI in covar (same set as other PEWAS + ALST order)\n", sep = "")
+  cat("  ", basename(output_dir), ": BMI in covar (same set as other PEWAS)\n", sep = "")
   covar_cols_this <- covariate_cols
   pd <- df_subset[, .(eid, phenotype = get(phenotype_name))]
   pd <- pd[!is.na(phenotype)]

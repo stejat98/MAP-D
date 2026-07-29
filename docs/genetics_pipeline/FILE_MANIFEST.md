@@ -1,158 +1,121 @@
-# Staged files for MAP-D Option A monorepo
+# File Manifest
 
-- **gwas_regenie/scripts/**: 82 files
-- **mr_twosample/scripts/**: 40 files
-- **figures_tables/scripts/**: 13 files
+Provenance for the genetics and MR code in this repository. Every file was
+taken from the `regenie_pipeline` working directory on the HMS O2 cluster and
+then curated for release: the published set covers the **full cohort** only,
+for **BMI**, **HbA1c**, and **TRIG_HDL_RATIO**. Scripts were edited to drop
+other traits and the glycemic strata, so some differ from their working copies.
 
-## All files
+Paths below are relative to `/n/groups/patel/sivateja/regenie_pipeline/`.
 
-- `docs/genetics_pipeline/WALKTHROUGH_SPLIT_SAMPLE_MR.md` ← `/n/groups/patel/sivateja/regenie_pipeline/WALKTHROUGH_SPLIT_SAMPLE_MR.md`
-- `figures_tables/run_variance_decomposition.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/run_variance_decomposition.sh`
-- `figures_tables/scripts/create_master_integrated_table.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/create_master_integrated_table.R`
-- `figures_tables/scripts/fig_bidirectional_mr_summary.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fig_bidirectional_mr_summary.R`
-- `figures_tables/scripts/fig_concordance_hba1c_forward.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fig_concordance_hba1c_forward.R`
-- `figures_tables/scripts/fig_forward_obs_vs_step.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fig_forward_obs_vs_step.R`
-- `figures_tables/scripts/fig_fwd_vs_rev_mr_scatterplots.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fig_fwd_vs_rev_mr_scatterplots.R`
-- `figures_tables/scripts/fig_reverse_pewas_summary.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fig_reverse_pewas_summary.R`
-- `figures_tables/scripts/fig2_enr_atlas.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fig2_enr_atlas.R`
-- `figures_tables/scripts/funnel_table_obs_step_mr_global_bonferroni.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/funnel_table_obs_step_mr_global_bonferroni.R`
-- `figures_tables/scripts/funnel_table_obs_step_mr.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/funnel_table_obs_step_mr.R`
-- `figures_tables/scripts/reproduce_triangulation_numbers.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/reproduce_triangulation_numbers.R`
-- `figures_tables/scripts/reproduce_triangulation_v2.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/reproduce_triangulation_v2.R`
-- `figures_tables/scripts/supplemental_tables_manuscript_and_hba1c_forward.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/supplemental_tables_manuscript_and_hba1c_forward.R`
-- `figures_tables/scripts/validation_concordance_all_phenotypes.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/validation_concordance_all_phenotypes.R`
-- `figures_tables/validation_bmi_cis_mr_concordant_plot.R` ← `/n/groups/patel/sivateja/regenie_pipeline/validation_bmi_cis_mr_concordant_plot.R`
-- `figures_tables/validation_bmi_cis_mr_plot.R` ← `/n/groups/patel/sivateja/regenie_pipeline/validation_bmi_cis_mr_plot.R`
-- `figures_tables/validation_hba1c_cis_mr_plot.R` ← `/n/groups/patel/sivateja/regenie_pipeline/validation_hba1c_cis_mr_plot.R`
-- `figures_tables/variance_decomposition_bmi.R` ← `/n/groups/patel/sivateja/regenie_pipeline/variance_decomposition_bmi.R`
-- `gwas_regenie/docs/MONITOR_JOB.md` ← `/n/groups/patel/sivateja/regenie_pipeline/MONITOR_JOB.md`
-- `gwas_regenie/docs/README.md` ← `/n/groups/patel/sivateja/regenie_pipeline/README.md`
-- `gwas_regenie/docs/RESUME_GUIDE.md` ← `/n/groups/patel/sivateja/regenie_pipeline/RESUME_GUIDE.md`
-- `gwas_regenie/docs/RESUME_HALLMARKS_FUMA.md` ← `/n/groups/patel/sivateja/regenie_pipeline/RESUME_HALLMARKS_FUMA.md`
-- `gwas_regenie/docs/RUN_PLAN.md` ← `/n/groups/patel/sivateja/regenie_pipeline/RUN_PLAN.md`
-- `gwas_regenie/docs/STATUS_UPDATE.md` ← `/n/groups/patel/sivateja/regenie_pipeline/STATUS_UPDATE.md`
-- `gwas_regenie/docs/SUMMARY_STATS_PATHS.md` ← `/n/groups/patel/sivateja/regenie_pipeline/SUMMARY_STATS_PATHS.md`
-- `gwas_regenie/docs/TEST_RUN_GUIDE.md` ← `/n/groups/patel/sivateja/regenie_pipeline/TEST_RUN_GUIDE.md`
-- `gwas_regenie/scripts/analysis_best_practices_chr15.md` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/analysis_best_practices_chr15.md`
-- `gwas_regenie/scripts/chr15_investigation_summary.md` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/chr15_investigation_summary.md`
-- `gwas_regenie/scripts/combine_regenie_results.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/combine_regenie_results.sh`
-- `gwas_regenie/scripts/comprehensive_status_report.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/comprehensive_status_report.sh`
-- `gwas_regenie/scripts/convert_to_fuma_format.py` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/convert_to_fuma_format.py`
-- `gwas_regenie/scripts/filter_pheno_to_genotype.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/filter_pheno_to_genotype.sh`
-- `gwas_regenie/scripts/fix_duplicates.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fix_duplicates.sh`
-- `gwas_regenie/scripts/fix_eids_rds.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/fix_eids_rds.R`
-- `gwas_regenie/scripts/generate_fuma_p0.1_files.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_fuma_p0.1_files.sh`
-- `gwas_regenie/scripts/generate_inputs_memory_efficient.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_inputs_memory_efficient.R`
-- `gwas_regenie/scripts/generate_inputs_normoglycemic.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_inputs_normoglycemic.R`
-- `gwas_regenie/scripts/generate_inputs.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_inputs.R`
-- `gwas_regenie/scripts/generate_regenie_inputs_prespec7_protein_bmi.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_regenie_inputs_prespec7_protein_bmi.R`
-- `gwas_regenie/scripts/investigate_chr15_block49.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/investigate_chr15_block49.sh`
-- `gwas_regenie/scripts/monitor_test_job.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/monitor_test_job.sh`
-- `gwas_regenie/scripts/pheno_list_diabetes_per_chr_remaining.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_diabetes_per_chr_remaining.txt`
-- `gwas_regenie/scripts/pheno_list_diabetes_per_chr.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_diabetes_per_chr.txt`
-- `gwas_regenie/scripts/pheno_list_full_per_chr_remaining.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_full_per_chr_remaining.txt`
-- `gwas_regenie/scripts/pheno_list_full_per_chr.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_full_per_chr.txt`
-- `gwas_regenie/scripts/pheno_list_hallmarks_bmi_hba1c.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_hallmarks_bmi_hba1c.txt`
-- `gwas_regenie/scripts/pheno_list_hallmarks.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_hallmarks.txt`
-- `gwas_regenie/scripts/pheno_list_normoglycemic_per_chr.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_normoglycemic_per_chr.txt`
-- `gwas_regenie/scripts/pheno_list_prediabetes_per_chr_remaining.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_prediabetes_per_chr_remaining.txt`
-- `gwas_regenie/scripts/pheno_list_prediabetes_per_chr.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_prediabetes_per_chr.txt`
-- `gwas_regenie/scripts/pheno_list_prespec7_protein_bmi_full.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_prespec7_protein_bmi_full.txt`
-- `gwas_regenie/scripts/pheno_list_proteins.txt` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_proteins.txt`
-- `gwas_regenie/scripts/prefilter_snps_by_stratum.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/prefilter_snps_by_stratum.sh`
-- `gwas_regenie/scripts/prefilter_snps.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/prefilter_snps.sh`
-- `gwas_regenie/scripts/preflight_checks.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/preflight_checks.R`
-- `gwas_regenie/scripts/process_hallmarks_fuma.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/process_hallmarks_fuma.sh`
-- `gwas_regenie/scripts/read_regenie_summary_stats.py` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/read_regenie_summary_stats.py`
-- `gwas_regenie/scripts/read_regenie_summary_stats.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/read_regenie_summary_stats.R`
-- `gwas_regenie/scripts/regenie_to_ldsc_munge_input.py` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/regenie_to_ldsc_munge_input.py`
-- `gwas_regenie/scripts/REMAINING_HALLMARKS_SETUP.md` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/REMAINING_HALLMARKS_SETUP.md`
-- `gwas_regenie/scripts/resubmit_prediabetes_chr15_consistent.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_chr15_consistent.sh`
-- `gwas_regenie/scripts/resubmit_prediabetes_chr15_exclude_block49.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_chr15_exclude_block49.sh`
-- `gwas_regenie/scripts/resubmit_prediabetes_chr15_fixed.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_chr15_fixed.sh`
-- `gwas_regenie/scripts/resubmit_prediabetes_chr15_mac10.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_chr15_mac10.sh`
-- `gwas_regenie/scripts/resubmit_prediabetes_chr15_mac100.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_chr15_mac100.sh`
-- `gwas_regenie/scripts/resubmit_prediabetes_chr15_mac20.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_chr15_mac20.sh`
-- `gwas_regenie/scripts/resubmit_prediabetes_chr15_proper.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_chr15_proper.sh`
-- `gwas_regenie/scripts/resubmit_prediabetes_failed.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resubmit_prediabetes_failed.sh`
-- `gwas_regenie/scripts/resume_regenie.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/resume_regenie.sh`
-- `gwas_regenie/scripts/run_generate_inputs.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/run_generate_inputs.sh`
-- `gwas_regenie/scripts/run_regenie_array_per_chr_chr15_fix.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/run_regenie_array_per_chr_chr15_fix.sh`
-- `gwas_regenie/scripts/run_regenie_array_per_chr.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/run_regenie_array_per_chr.sh`
-- `gwas_regenie/scripts/run_regenie_array.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/run_regenie_array.sh`
-- `gwas_regenie/scripts/run_regenie_test.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/run_regenie_test.sh`
-- `gwas_regenie/scripts/run_test_bmi_diabetes.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/run_test_bmi_diabetes.sh`
-- `gwas_regenie/scripts/run_test_regenie.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/run_test_regenie.sh`
-- `gwas_regenie/scripts/step1_concatenate_hallmarks.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/step1_concatenate_hallmarks.sh`
-- `gwas_regenie/scripts/step2_convert_to_fuma.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/step2_convert_to_fuma.sh`
-- `gwas_regenie/scripts/step3_filter_p0.1.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/step3_filter_p0.1.sh`
-- `gwas_regenie/scripts/submit_diabetes_per_chr_remaining.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_diabetes_per_chr_remaining.sh`
-- `gwas_regenie/scripts/submit_diabetes_per_chr.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_diabetes_per_chr.sh`
-- `gwas_regenie/scripts/submit_full_per_chr_remaining.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_full_per_chr_remaining.sh`
-- `gwas_regenie/scripts/submit_full_per_chr.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_full_per_chr.sh`
-- `gwas_regenie/scripts/submit_hallmarks_all_strata.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_hallmarks_all_strata.sh`
-- `gwas_regenie/scripts/submit_hallmarks_bmi_hba1c.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_hallmarks_bmi_hba1c.sh`
-- `gwas_regenie/scripts/submit_hallmarks_prioritized.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_hallmarks_prioritized.sh`
-- `gwas_regenie/scripts/submit_normoglycemic_per_chr.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_normoglycemic_per_chr.sh`
-- `gwas_regenie/scripts/submit_prediabetes_per_chr_remaining.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_prediabetes_per_chr_remaining.sh`
-- `gwas_regenie/scripts/submit_prediabetes_per_chr.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_prediabetes_per_chr.sh`
-- `gwas_regenie/scripts/submit_proteins_all_strata.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_proteins_all_strata.sh`
-- `gwas_regenie/scripts/submit_proteins_optimized.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_proteins_optimized.sh`
-- `gwas_regenie/scripts/submit_regenie_prespec7_proteins_full.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_regenie_prespec7_proteins_full.sh`
-- `gwas_regenie/scripts/submit_regenie.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_regenie.sh`
-- `gwas_regenie/scripts/submit_remaining_hallmarks_all_strata.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_remaining_hallmarks_all_strata.sh`
-- `gwas_regenie/scripts/submit_test_bmi.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_test_bmi.sh`
-- `gwas_regenie/scripts/test_all_strata.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_all_strata.sh`
-- `gwas_regenie/scripts/test_bmi_diabetes.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_bmi_diabetes.sh`
-- `gwas_regenie/scripts/test_bmi_fairshare.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_bmi_fairshare.sh`
-- `gwas_regenie/scripts/test_bmi_minimal.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_bmi_minimal.sh`
-- `gwas_regenie/scripts/test_bmi_quick_subset.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_bmi_quick_subset.sh`
-- `gwas_regenie/scripts/test_bmi_quick.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_bmi_quick.sh`
-- `gwas_regenie/scripts/test_bmi_tiny.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_bmi_tiny.sh`
-- `gwas_regenie/scripts/test_bmi_with_filter.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_bmi_with_filter.sh`
-- `gwas_regenie/scripts/test_diabetes_stratum.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_diabetes_stratum.sh`
-- `gwas_regenie/scripts/test_full_stratum.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_full_stratum.sh`
-- `gwas_regenie/scripts/test_prediabetes_stratum.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_prediabetes_stratum.sh`
-- `gwas_regenie/scripts/test_regenie.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_regenie.sh`
-- `gwas_regenie/scripts/test_single_protein.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/test_single_protein.sh`
-- `mr_twosample/merge_cis_pqtl_coloc.R` ← `/n/groups/patel/sivateja/regenie_pipeline/merge_cis_pqtl_coloc.R`
-- `mr_twosample/scripts/bidirectional_mr_bmi_to_proteins.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/bidirectional_mr_bmi_to_proteins.R`
-- `mr_twosample/scripts/bidirectional_mr_decode_trig_hdl.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/bidirectional_mr_decode_trig_hdl.R`
-- `mr_twosample/scripts/bidirectional_mr_lep_bmi.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/bidirectional_mr_lep_bmi.R`
-- `mr_twosample/scripts/combine_cis_trans_results.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/combine_cis_trans_results.R`
-- `mr_twosample/scripts/combine_reverse_mr_r2clump.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/combine_reverse_mr_r2clump.R`
-- `mr_twosample/scripts/compare_lepr_bmi_mr_vs_obs.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/compare_lepr_bmi_mr_vs_obs.R`
-- `mr_twosample/scripts/generate_bidirectional_mr_tables.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_bidirectional_mr_tables.R`
-- `mr_twosample/scripts/generate_MR_complete_tables.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_MR_complete_tables.R`
-- `mr_twosample/scripts/generate_MR_supplemental_tables.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/generate_MR_supplemental_tables.R`
-- `mr_twosample/scripts/lepr_bmi_adjusted_for_lep.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/lepr_bmi_adjusted_for_lep.R`
-- `mr_twosample/scripts/merge_trig_hdl_bidirectional.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/merge_trig_hdl_bidirectional.R`
-- `mr_twosample/scripts/mr_decode_lep_bmi.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/mr_decode_lep_bmi.R`
-- `mr_twosample/scripts/mr_decode_lepr_bmi.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/mr_decode_lepr_bmi.R`
-- `mr_twosample/scripts/mr_lepr_normoglycemic.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/mr_lepr_normoglycemic.R`
-- `mr_twosample/scripts/mr_summary_table.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/mr_summary_table.R`
-- `mr_twosample/scripts/reverse_mr_bmi_to_all_proteins.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/reverse_mr_bmi_to_all_proteins.R`
-- `mr_twosample/scripts/reverse_mr_phenotype_to_all_proteins.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/reverse_mr_phenotype_to_all_proteins.R`
-- `mr_twosample/scripts/reverse_mr_r2clump_sensitivity.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/reverse_mr_r2clump_sensitivity.R`
-- `mr_twosample/scripts/reverse_observational_pewas.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/reverse_observational_pewas.R`
-- `mr_twosample/scripts/submit_all_proteins_cis_trans.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_all_proteins_cis_trans.sh`
-- `mr_twosample/scripts/submit_cis_trans_chunked.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_cis_trans_chunked.sh`
-- `mr_twosample/scripts/submit_decode_lep_bmi.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_decode_lep_bmi.sh`
-- `mr_twosample/scripts/submit_leptin_cis_trans.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_leptin_cis_trans.sh`
-- `mr_twosample/scripts/submit_reverse_mr_r2clump.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_reverse_mr_r2clump.sh`
-- `mr_twosample/scripts/submit_reverse_pewas.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_reverse_pewas.sh`
-- `mr_twosample/scripts/submit_twosampleMR_strata.sh` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_twosampleMR_strata.sh`
-- `mr_twosample/scripts/twosampleMR_all_proteins_cis_trans.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_all_proteins_cis_trans.R`
-- `mr_twosample/scripts/twosampleMR_cis_trans_chunked.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_cis_trans_chunked.R`
-- `mr_twosample/scripts/twosampleMR_leptin_cis_trans.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_leptin_cis_trans.R`
-- `mr_twosample/scripts/twosampleMR_proteins_bmi_diabetes.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_bmi_diabetes.R`
-- `mr_twosample/scripts/twosampleMR_proteins_bmi_prediabetes.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_bmi_prediabetes.R`
-- `mr_twosample/scripts/twosampleMR_proteins_bmi.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_bmi.R`
-- `mr_twosample/scripts/twosampleMR_proteins_diastolic_bp_full.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_diastolic_bp_full.R`
-- `mr_twosample/scripts/twosampleMR_proteins_hba1c_diabetes.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_hba1c_diabetes.R`
-- `mr_twosample/scripts/twosampleMR_proteins_hba1c_prediabetes.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_hba1c_prediabetes.R`
-- `mr_twosample/scripts/twosampleMR_proteins_hba1c.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_hba1c.R`
-- `mr_twosample/scripts/twosampleMR_proteins_hdl_full.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_hdl_full.R`
-- `mr_twosample/scripts/twosampleMR_proteins_ldl_full.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_ldl_full.R`
-- `mr_twosample/scripts/twosampleMR_proteins_systolic_bp_full.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_systolic_bp_full.R`
-- `mr_twosample/scripts/twosampleMR_proteins_trig_hdl_ratio_full.R` ← `/n/groups/patel/sivateja/regenie_pipeline/scripts/twosampleMR_proteins_trig_hdl_ratio_full.R`
+## Split-sample REGENIE GWAS
+
+- `gwas_regenie/scripts/combine_regenie_results.sh` ← `scripts/combine_regenie_results.sh`
+- `gwas_regenie/scripts/convert_to_fuma_format.py` ← `scripts/convert_to_fuma_format.py`
+- `gwas_regenie/scripts/filter_pheno_to_genotype.sh` ← `scripts/filter_pheno_to_genotype.sh`
+- `gwas_regenie/scripts/fix_duplicates.sh` ← `scripts/fix_duplicates.sh`
+- `gwas_regenie/scripts/fix_eids_rds.R` ← `scripts/fix_eids_rds.R`
+- `gwas_regenie/scripts/generate_fuma_p0.1_files.sh` ← `scripts/generate_fuma_p0.1_files.sh`
+- `gwas_regenie/scripts/generate_inputs.R` ← `scripts/generate_inputs.R`
+- `gwas_regenie/scripts/generate_inputs_memory_efficient.R` ← `scripts/generate_inputs_memory_efficient.R`
+- `gwas_regenie/scripts/generate_regenie_inputs_prespec7_protein_bmi.R` ← `scripts/generate_regenie_inputs_prespec7_protein_bmi.R`
+- `gwas_regenie/scripts/pheno_list_full_per_chr.txt` ← `scripts/pheno_list_full_per_chr.txt`
+- `gwas_regenie/scripts/pheno_list_hallmarks.txt` ← `scripts/pheno_list_hallmarks.txt`
+- `gwas_regenie/scripts/pheno_list_prespec7_protein_bmi_full.txt` ← `scripts/pheno_list_prespec7_protein_bmi_full.txt`
+- `gwas_regenie/scripts/pheno_list_proteins.txt` ← `scripts/pheno_list_proteins.txt`
+- `gwas_regenie/scripts/prefilter_snps.sh` ← `scripts/prefilter_snps.sh`
+- `gwas_regenie/scripts/preflight_checks.R` ← `scripts/preflight_checks.R`
+- `gwas_regenie/scripts/process_hallmarks_fuma.sh` ← `scripts/process_hallmarks_fuma.sh`
+- `gwas_regenie/scripts/read_regenie_summary_stats.R` ← `scripts/read_regenie_summary_stats.R`
+- `gwas_regenie/scripts/read_regenie_summary_stats.py` ← `scripts/read_regenie_summary_stats.py`
+- `gwas_regenie/scripts/regenie_to_ldsc_munge_input.py` ← `scripts/regenie_to_ldsc_munge_input.py`
+- `gwas_regenie/scripts/resume_regenie.sh` ← `scripts/resume_regenie.sh`
+- `gwas_regenie/scripts/run_generate_inputs.sh` ← `scripts/run_generate_inputs.sh`
+- `gwas_regenie/scripts/run_regenie_array.sh` ← `scripts/run_regenie_array.sh`
+- `gwas_regenie/scripts/run_regenie_array_per_chr.sh` ← `scripts/run_regenie_array_per_chr.sh`
+- `gwas_regenie/scripts/run_regenie_test.sh` ← `scripts/run_regenie_test.sh`
+- `gwas_regenie/scripts/run_test_regenie.sh` ← `scripts/run_test_regenie.sh`
+- `gwas_regenie/scripts/step1_concatenate_hallmarks.sh` ← `scripts/step1_concatenate_hallmarks.sh`
+- `gwas_regenie/scripts/step2_convert_to_fuma.sh` ← `scripts/step2_convert_to_fuma.sh`
+- `gwas_regenie/scripts/step3_filter_p0.1.sh` ← `scripts/step3_filter_p0.1.sh`
+- `gwas_regenie/scripts/submit_full_per_chr.sh` ← `scripts/submit_full_per_chr.sh`
+- `gwas_regenie/scripts/submit_hallmarks_full.sh` ← `scripts/submit_hallmarks_all_strata.sh` (renamed)
+- `gwas_regenie/scripts/submit_proteins_full.sh` ← `scripts/submit_proteins_all_strata.sh` (renamed)
+- `gwas_regenie/scripts/submit_regenie.sh` ← `scripts/submit_regenie.sh`
+- `gwas_regenie/scripts/submit_regenie_prespec7_proteins_full.sh` ← `scripts/submit_regenie_prespec7_proteins_full.sh`
+- `gwas_regenie/scripts/submit_test_bmi.sh` ← `scripts/submit_test_bmi.sh`
+- `gwas_regenie/scripts/test_bmi_minimal.sh` ← `scripts/test_bmi_minimal.sh`
+- `gwas_regenie/scripts/test_bmi_quick.sh` ← `scripts/test_bmi_quick.sh`
+- `gwas_regenie/scripts/test_bmi_quick_subset.sh` ← `scripts/test_bmi_quick_subset.sh`
+- `gwas_regenie/scripts/test_bmi_tiny.sh` ← `scripts/test_bmi_tiny.sh`
+- `gwas_regenie/scripts/test_bmi_with_filter.sh` ← `scripts/test_bmi_with_filter.sh`
+- `gwas_regenie/scripts/test_full_stratum.sh` ← `scripts/test_full_stratum.sh`
+- `gwas_regenie/scripts/test_regenie.sh` ← `scripts/test_regenie.sh`
+- `gwas_regenie/scripts/test_single_protein.sh` ← `scripts/test_single_protein.sh`
+
+## GWAS pipeline documentation
+
+- `gwas_regenie/docs/README.md` ← `README.md`
+- `gwas_regenie/docs/RESUME_GUIDE.md` ← `RESUME_GUIDE.md`
+- `gwas_regenie/docs/RUN_PLAN.md` ← `RUN_PLAN.md`
+- `gwas_regenie/docs/SUMMARY_STATS_PATHS.md` ← `SUMMARY_STATS_PATHS.md`
+- `gwas_regenie/docs/TEST_RUN_GUIDE.md` ← `TEST_RUN_GUIDE.md`
+
+## Two-sample and bidirectional MR
+
+- `mr_twosample/merge_cis_pqtl_coloc.R` ← `merge_cis_pqtl_coloc.R`
+
+- `mr_twosample/scripts/bidirectional_mr_bmi_to_proteins.R` ← `scripts/bidirectional_mr_bmi_to_proteins.R`
+- `mr_twosample/scripts/bidirectional_mr_decode_trig_hdl.R` ← `scripts/bidirectional_mr_decode_trig_hdl.R`
+- `mr_twosample/scripts/bidirectional_mr_lep_bmi.R` ← `scripts/bidirectional_mr_lep_bmi.R`
+- `mr_twosample/scripts/combine_cis_trans_results.R` ← `scripts/combine_cis_trans_results.R`
+- `mr_twosample/scripts/combine_reverse_mr_r2clump.R` ← `scripts/combine_reverse_mr_r2clump.R`
+- `mr_twosample/scripts/generate_bidirectional_mr_tables.R` ← `scripts/generate_bidirectional_mr_tables.R`
+- `mr_twosample/scripts/lepr_bmi_adjusted_for_lep.R` ← `scripts/lepr_bmi_adjusted_for_lep.R`
+- `mr_twosample/scripts/merge_trig_hdl_bidirectional.R` ← `scripts/merge_trig_hdl_bidirectional.R`
+- `mr_twosample/scripts/mr_decode_lep_bmi.R` ← `scripts/mr_decode_lep_bmi.R`
+- `mr_twosample/scripts/mr_decode_lepr_bmi.R` ← `scripts/mr_decode_lepr_bmi.R`
+- `mr_twosample/scripts/mr_summary_table.R` ← `scripts/mr_summary_table.R`
+- `mr_twosample/scripts/reverse_mr_bmi_to_all_proteins.R` ← `scripts/reverse_mr_bmi_to_all_proteins.R`
+- `mr_twosample/scripts/reverse_mr_phenotype_to_all_proteins.R` ← `scripts/reverse_mr_phenotype_to_all_proteins.R`
+- `mr_twosample/scripts/reverse_mr_r2clump_sensitivity.R` ← `scripts/reverse_mr_r2clump_sensitivity.R`
+- `mr_twosample/scripts/reverse_observational_pewas.R` ← `scripts/reverse_observational_pewas.R`
+- `mr_twosample/scripts/submit_all_proteins_cis_trans.sh` ← `scripts/submit_all_proteins_cis_trans.sh`
+- `mr_twosample/scripts/submit_cis_trans_chunked.sh` ← `scripts/submit_cis_trans_chunked.sh`
+- `mr_twosample/scripts/submit_decode_lep_bmi.sh` ← `scripts/submit_decode_lep_bmi.sh`
+- `mr_twosample/scripts/submit_leptin_cis_trans.sh` ← `scripts/submit_leptin_cis_trans.sh`
+- `mr_twosample/scripts/submit_reverse_mr_r2clump.sh` ← `scripts/submit_reverse_mr_r2clump.sh`
+- `mr_twosample/scripts/submit_reverse_pewas.sh` ← `scripts/submit_reverse_pewas.sh`
+- `mr_twosample/scripts/twosampleMR_all_proteins_cis_trans.R` ← `scripts/twosampleMR_all_proteins_cis_trans.R`
+- `mr_twosample/scripts/twosampleMR_cis_trans_chunked.R` ← `scripts/twosampleMR_cis_trans_chunked.R`
+- `mr_twosample/scripts/twosampleMR_leptin_cis_trans.R` ← `scripts/twosampleMR_leptin_cis_trans.R`
+- `mr_twosample/scripts/twosampleMR_proteins_bmi.R` ← `scripts/twosampleMR_proteins_bmi.R`
+- `mr_twosample/scripts/twosampleMR_proteins_hba1c.R` ← `scripts/twosampleMR_proteins_hba1c.R`
+- `mr_twosample/scripts/twosampleMR_proteins_trig_hdl_ratio_full.R` ← `scripts/twosampleMR_proteins_trig_hdl_ratio_full.R`
+
+## Figures and summary tables
+
+- `figures_tables/run_variance_decomposition.sh` ← `run_variance_decomposition.sh`
+- `figures_tables/validation_bmi_cis_mr_concordant_plot.R` ← `validation_bmi_cis_mr_concordant_plot.R`
+- `figures_tables/validation_bmi_cis_mr_plot.R` ← `validation_bmi_cis_mr_plot.R`
+- `figures_tables/validation_hba1c_cis_mr_plot.R` ← `validation_hba1c_cis_mr_plot.R`
+- `figures_tables/variance_decomposition_bmi.R` ← `variance_decomposition_bmi.R`
+
+- `figures_tables/scripts/create_master_integrated_table.R` ← `scripts/create_master_integrated_table.R`
+- `figures_tables/scripts/fig2_enr_atlas.R` ← `scripts/fig2_enr_atlas.R`
+- `figures_tables/scripts/fig_bidirectional_mr_summary.R` ← `scripts/fig_bidirectional_mr_summary.R`
+- `figures_tables/scripts/fig_concordance_hba1c_forward.R` ← `scripts/fig_concordance_hba1c_forward.R`
+- `figures_tables/scripts/fig_forward_obs_vs_step.R` ← `scripts/fig_forward_obs_vs_step.R`
+- `figures_tables/scripts/fig_fwd_vs_rev_mr_scatterplots.R` ← `scripts/fig_fwd_vs_rev_mr_scatterplots.R`
+- `figures_tables/scripts/fig_reverse_pewas_summary.R` ← `scripts/fig_reverse_pewas_summary.R`
+- `figures_tables/scripts/funnel_table_obs_step_mr.R` ← `scripts/funnel_table_obs_step_mr.R`
+- `figures_tables/scripts/funnel_table_obs_step_mr_global_bonferroni.R` ← `scripts/funnel_table_obs_step_mr_global_bonferroni.R`
+- `figures_tables/scripts/reproduce_triangulation_numbers.R` ← `scripts/reproduce_triangulation_numbers.R`
+- `figures_tables/scripts/reproduce_triangulation_v2.R` ← `scripts/reproduce_triangulation_v2.R`
+- `figures_tables/scripts/supplemental_tables_manuscript_and_hba1c_forward.R` ← `scripts/supplemental_tables_manuscript_and_hba1c_forward.R`
+- `figures_tables/scripts/validation_concordance_all_phenotypes.R` ← `scripts/validation_concordance_all_phenotypes.R`
+
+## Genetics pipeline documentation
+
+- `docs/genetics_pipeline/FILE_MANIFEST.md` ← `scripts/FILE_MANIFEST.md`
+- `docs/genetics_pipeline/WALKTHROUGH_SPLIT_SAMPLE_MR.md` ← `WALKTHROUGH_SPLIT_SAMPLE_MR.md`

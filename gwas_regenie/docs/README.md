@@ -1,27 +1,21 @@
 # REGENIE GWAS Pipeline
 
-This pipeline runs GWAS using REGENIE for validated plasma proteins and clinical hallmark traits across three population strata (full, prediabetes, diabetes), with strict sample splitting for split-sample MR design.
+This pipeline runs GWAS using REGENIE for validated plasma proteins and the cardiometabolic hallmark traits in the full cohort, with strict sample splitting for the split-sample MR design.
 
 ## Overview
 
 - **Proteins GWAS**: Run in proteomics-only sample (`eid %in% olink_eids_for_proteins_gwas`)
 - **Hallmarks GWAS**: Run in held-out sample (`eid %notin% olink_eids_for_proteins_gwas`)
-- **Strata**: Full population, Prediabetes, Diabetes
+- **Cohort**: Full population only
 
 ## Directory Structure
 
 ```
 regenie_pipeline/
 ├── inputs/
-│   ├── full/
-│   │   ├── proteins_only/      # Protein phenotypes (proteomics sample)
-│   │   └── hallmarks_heldout/   # Hallmark traits (held-out sample)
-│   ├── prediabetes/
-│   │   ├── proteins_only/
-│   │   └── hallmarks_heldout/
-│   └── diabetes/
-│       ├── proteins_only/
-│       └── hallmarks_heldout/
+│   └── full/
+│       ├── proteins_only/      # Protein phenotypes (proteomics sample)
+│       └── hallmarks_heldout/  # Hallmark traits (held-out sample)
 ├── scripts/
 │   ├── generate_inputs.R        # Generate pheno.txt and covar.txt files
 │   ├── run_regenie_array.sh     # REGENIE step 1 + step 2 (array job)
@@ -52,12 +46,7 @@ regenie_pipeline/
 
 - BMI
 - HbA1c
-- HDL
-- LDL
-- TRIG_HDL_RATIO
-- systolic_BP
-- diastolic_BP
-- **ALST** (appendicular lean soft tissue, kg): `0.958 × f.23129.0.0 − 0.166 × x.sex − 0.308`. If `f.23129.0.0` is not in the main RDS, `generate_inputs.R` will merge UKB baseline columns from **`ukb34521.fst`** (default path under `/n/no_backup2/patel/uk_biobank/main_data_34521/`), selecting `f.eid`, `f.74.0.0`, `f.23129.0.0`, `f.23101.0.0`, joining on `eid` = `f.eid`. Override with env var **`UKB34521_FST`**. Requires the R package **`fst`**.
+- TRIG_HDL_RATIO (triglyceride / HDL ratio)
 
 ## Usage
 

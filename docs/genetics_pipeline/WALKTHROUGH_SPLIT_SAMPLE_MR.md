@@ -20,12 +20,10 @@ This avoids sample overlap between exposure and outcome GWAS, satisfying a key a
 | **Reverse** | UKB hallmark GWAS (held-out sample instruments) | DECODE Iceland pQTLs | Hallmark -> Protein causal effect |
 | **Forward (external replication)** | DECODE cis-pQTLs | UKB hallmark GWAS | Independent replication with zero UKB instrument overlap |
 
-### Population strata
+### Population
 
-The GWAS and MR results reported in the manuscript use the **full cohort only**
-(~75-78K for hallmarks, ~50K for proteins). The pipeline also supports prediabetes
-(~8K) and diabetes (~2K) strata, and several scripts below take a stratum argument,
-but those runs are exploratory and were not used for the manuscript.
+The GWAS and MR analyses here use the **full cohort only**: ~75-78K individuals for the
+hallmark traits (held-out sample) and ~50K for the proteins (Olink sample).
 
 ---
 
@@ -61,13 +59,9 @@ This script:
 
 ```
 inputs/
-├── full/
-│   ├── proteins_only/{PROTEIN_NAME}/pheno.txt, covar.txt
-│   └── hallmarks_heldout/{BMI,HbA1c,TRIG_HDL_RATIO}/pheno.txt, covar.txt
-├── prediabetes/
-│   └── ...same structure...
-└── diabetes/
-    └── ...same structure...
+└── full/
+    ├── proteins_only/{PROTEIN_NAME}/pheno.txt, covar.txt
+    └── hallmarks_heldout/{BMI,HbA1c,TRIG_HDL_RATIO}/pheno.txt, covar.txt
 ```
 
 ### 3B. Run Preflight Checks
@@ -87,12 +81,12 @@ Validates that all files exist, sample sizes look right, and EIDs don't overlap 
 
 **Submit hallmark GWAS (BMI, HbA1c, TRIG_HDL_RATIO in held-out sample):**
 ```bash
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_hallmarks_all_strata.sh
+bash /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_hallmarks_full.sh
 ```
 
 **Submit protein GWAS (Olink sample):**
 ```bash
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_proteins_all_strata.sh
+bash /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_proteins_full.sh
 ```
 
 ### 3D. Combine Per-Chromosome Results
@@ -116,8 +110,6 @@ Located under `results/GWAS/{PHENOTYPE}/`:
 | BMI | `results/GWAS/BMI/BMI_full_all_chr.regenie.gz` |
 | HbA1c | `results/GWAS/HbA1c/HbA1c_full_all_chr.regenie.gz` |
 | TRIG_HDL_RATIO | `results/GWAS/TRIG_HDL_RATIO/TRIG_HDL_RATIO_full_all_chr.regenie.gz` |
-
-Also available for `_diabetes_` and `_prediabetes_` strata.
 
 **REGENIE format columns:** `CHROM GENPOS ID ALLELE0 ALLELE1 A1FREQ N TEST BETA SE CHISQ LOG10P EXTRA`
 
@@ -163,20 +155,11 @@ This calls `scripts/twosampleMR_cis_trans_chunked.R` with `qtl_type = "cis"`, wh
 
 **Per-hallmark scripts (all pQTLs -- used for initial exploration):**
 
-| Script | Hallmark | Stratum |
-|--------|----------|---------|
-| `scripts/twosampleMR_proteins_bmi.R` | BMI | Full |
-| `scripts/twosampleMR_proteins_bmi_prediabetes.R` | BMI | Prediabetes |
-| `scripts/twosampleMR_proteins_bmi_diabetes.R` | BMI | Diabetes |
-| `scripts/twosampleMR_proteins_hba1c.R` | HbA1c | Full |
-| `scripts/twosampleMR_proteins_hba1c_prediabetes.R` | HbA1c | Prediabetes |
-| `scripts/twosampleMR_proteins_hba1c_diabetes.R` | HbA1c | Diabetes |
-| `scripts/twosampleMR_proteins_trig_hdl_ratio_full.R` | TRIG_HDL_RATIO | Full |
-
-**Batch submission (BMI/HbA1c across strata):**
-```bash
-sbatch /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_twosampleMR_strata.sh
-```
+| Script | Hallmark |
+|--------|----------|
+| `scripts/twosampleMR_proteins_bmi.R` | BMI |
+| `scripts/twosampleMR_proteins_hba1c.R` | HbA1c |
+| `scripts/twosampleMR_proteins_trig_hdl_ratio_full.R` | TRIG_HDL_RATIO |
 
 ### How the forward MR works (e.g., `twosampleMR_cis_trans_chunked.R` with `cis`)
 1. Loads validated proteins from `merged_step1_2_ukb_T2D_coloc.csv`
@@ -196,16 +179,12 @@ results/twosampleMR/
 │   ├── MR_cis_chunk1_of_8.csv  ... MR_cis_chunk8_of_8.csv    # cis-only forward MR
 │   └── (trans chunks also exist but not used for main analysis)
 ├── MR_proteins_BMI_full.csv
-├── MR_proteins_BMI_prediabetes.csv
-├── MR_proteins_BMI_diabetes.csv
 ├── MR_proteins_HbA1c_full.csv
-├── MR_proteins_HbA1c_prediabetes.csv
-├── MR_proteins_HbA1c_diabetes.csv
 ├── MR_proteins_TRIG_HDL_RATIO_full.csv
-├── harmonized_data_proteins_{PHENO}_{STRATUM}.csv
-├── heterogeneity_proteins_{PHENO}_{STRATUM}.csv
-├── pleiotropy_proteins_{PHENO}_{STRATUM}.csv
-└── leaveoneout_proteins_{PHENO}_{STRATUM}.csv
+├── harmonized_data_proteins_{PHENO}_full.csv
+├── heterogeneity_proteins_{PHENO}_full.csv
+├── pleiotropy_proteins_{PHENO}_full.csv
+└── leaveoneout_proteins_{PHENO}_full.csv
 ```
 
 ---
@@ -341,10 +320,10 @@ Rscript scripts/generate_inputs.R
 Rscript scripts/preflight_checks.R
 
 # 3. Submit hallmark GWAS (held-out sample: BMI, HbA1c, TRIG_HDL_RATIO)
-bash scripts/submit_hallmarks_all_strata.sh
+bash scripts/submit_hallmarks_full.sh
 
 # 4. Submit protein GWAS (Olink sample)
-bash scripts/submit_proteins_all_strata.sh
+bash scripts/submit_proteins_full.sh
 
 # 5. Combine per-chromosome results
 bash scripts/combine_regenie_results.sh
@@ -355,7 +334,8 @@ bash scripts/combine_regenie_results.sh
 bash scripts/submit_cis_trans_chunked.sh
 
 # 6b. Or per-hallmark scripts
-sbatch scripts/submit_twosampleMR_strata.sh                    # BMI/HbA1c across strata
+Rscript scripts/twosampleMR_proteins_bmi.R                     # BMI
+Rscript scripts/twosampleMR_proteins_hba1c.R                   # HbA1c
 Rscript scripts/twosampleMR_proteins_trig_hdl_ratio_full.R     # TRIG_HDL_RATIO
 
 # --- REVERSE MR (hallmark instruments -> DECODE protein outcomes) ---

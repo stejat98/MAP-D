@@ -9,7 +9,7 @@ PHENO_LIST="${SCRIPT_DIR}/pheno_list_full_per_chr.txt"
 echo "=========================================="
 echo "Submitting REGENIE jobs for full strata (split by chromosome)"
 echo "=========================================="
-echo "Phenotypes: BMI, HbA1c"
+echo "Phenotypes: BMI, HbA1c, TRIG_HDL_RATIO"
 echo "Chromosomes: 1-22 (44 jobs total)"
 echo ""
 

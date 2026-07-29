@@ -35,7 +35,7 @@ Rscript regenie_pipeline/scripts/generate_inputs.R
 
 **What this does**:
 - Loads main RDS, proteomics EIDs, and validated proteins
-- Creates datasets for each stratum (full, prediabetes, diabetes)
+- Creates datasets for the full cohort
 - Applies EID split:
   - **Proteins** → `eid %in% olink_eids_for_proteins_gwas`
   - **Hallmarks** → `eid %notin% olink_eids_for_proteins_gwas`

@@ -76,13 +76,9 @@ write.csv(cis_trans_summary, file.path(output_dir, "protein_cis_trans_summary.cs
 # 3. Define outcomes
 # -----------------------------------------------------------------------------
 outcomes <- list(
-  list(phenotype = "BMI", strata = c("full", "prediabetes", "diabetes")),
-  list(phenotype = "HbA1c", strata = c("full", "prediabetes", "diabetes")),
-  list(phenotype = "HDL", strata = c("full")),
-  list(phenotype = "LDL", strata = c("full")),
-  list(phenotype = "TRIG_HDL_RATIO", strata = c("full")),
-  list(phenotype = "systolic_BP", strata = c("full")),
-  list(phenotype = "diastolic_BP", strata = c("full"))
+  list(phenotype = "BMI", strata = c("full")),
+  list(phenotype = "HbA1c", strata = c("full")),
+  list(phenotype = "TRIG_HDL_RATIO", strata = c("full"))
 )
 
 # -----------------------------------------------------------------------------

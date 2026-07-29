@@ -6,9 +6,9 @@
 
 set -e
 
-# Default: combine BMI and HbA1c for all strata (diabetes, prediabetes, full)
+# Default: combine the hallmark traits for the full cohort
 PHENOTYPES="${1:-BMI HbA1c}"
-STRATA="${2:-diabetes prediabetes full}"
+STRATA="${2:-full}"
 
 # Output directory (scratch for processing, then copy to permanent location)
 SCRATCH_ROOT="/n/scratch/users/s/st320/regenie"

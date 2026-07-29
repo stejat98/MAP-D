@@ -31,11 +31,8 @@ cat("\n")
 # Overall MR files
 overall_files <- list(
   BMI_full = "MR_proteins_BMI_full.csv",
-  BMI_prediabetes = "MR_proteins_BMI_prediabetes.csv",
-  BMI_diabetes = "MR_proteins_BMI_diabetes.csv",
   HbA1c_full = "MR_proteins_HbA1c_full.csv",
-  HbA1c_prediabetes = "MR_proteins_HbA1c_prediabetes.csv",
-  HbA1c_diabetes = "MR_proteins_HbA1c_diabetes.csv"
+  TRIG_HDL_RATIO_full = "MR_proteins_TRIG_HDL_RATIO_full.csv"
 )
 
 # Function to get summary stats for cis/trans
@@ -78,7 +75,7 @@ get_summary <- function(df, pheno, strat, qtl_type = NULL) {
 summary_data <- data.frame()
 
 for (phenotype in c("BMI", "HbA1c")) {
-  for (stratum in c("full", "prediabetes", "diabetes")) {
+  for (stratum in c("full")) {
     # Overall (from original MR files)
     overall_key <- paste0(phenotype, "_", stratum)
     overall_file <- file.path(results_dir, overall_files[[overall_key]])

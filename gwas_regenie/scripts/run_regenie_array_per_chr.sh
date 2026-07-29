@@ -221,28 +221,6 @@ echo "[${PHENO_NAME}] Processing chromosome ${TARGET_CHR}..."
 # All earlier successful jobs used default MAC 5
 MIN_MAC_THRESHOLD=5  # Default REGENIE value, consistent with earlier analyses
 
-# Handle chromosome 15 block 49 NaN error for prediabetes stratum
-# MAC filtering (5, 10, 100) all failed - issue is specific to block 49 variants
-# Exclude block 49 variants (variants 19,201-19,600) that cause numerical issues
-EXCLUDE_FLAG=""
-if [ "$TARGET_CHR" = "15" ] && [ "$STRATUM" = "prediabetes" ]; then
-    BLOCK_SIZE=400
-    BLOCK_NUM=49
-    START_VAR=$(( (BLOCK_NUM - 1) * BLOCK_SIZE + 1 ))
-    END_VAR=$(( BLOCK_NUM * BLOCK_SIZE ))
-    BIM_FILE="${FAM_PATH}/ukb15.bim"
-    EXCLUDE_FILE="${OUTDIR_STEP2}/chr15_block49_exclude.txt"
-    
-    if [ -f "$BIM_FILE" ]; then
-        echo "[${PHENO_NAME}] Creating exclude file for block 49 variants (fixing NaN error)..."
-        echo "[${PHENO_NAME}] Note: MAC filtering (5, 10, 100) all failed - excluding block 49 variants"
-        sed -n "${START_VAR},${END_VAR}p" "$BIM_FILE" | awk '{print $2}' > "$EXCLUDE_FILE"
-        EXCLUDE_COUNT=$(wc -l < "$EXCLUDE_FILE")
-        echo "[${PHENO_NAME}] Excluding $EXCLUDE_COUNT variants from block 49 (variants $START_VAR-$END_VAR)"
-        EXCLUDE_FLAG="--exclude ${EXCLUDE_FILE}"
-    fi
-fi
-
 regenie \
   --step 2 \
   --bed "${FAM_PATH}/ukb${TARGET_CHR}" \
@@ -250,7 +228,6 @@ regenie \
   --covarFile "${COVAR_FILE}" \
   --pred "${PRED_FILE}" \
   ${STEP2_FLAGS} \
-  ${EXCLUDE_FLAG} \
   --minMAC ${MIN_MAC_THRESHOLD} \
   --bsize 400 \
   --threads 8 \

@@ -20,10 +20,7 @@ PROTEOMICS_EIDS_RDS <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RD
 VALIDATED_PROTEINS_CSV <- "/n/groups/patel/sivateja/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
 INPUT_BASE <- "/n/groups/patel/sivateja/regenie_pipeline/inputs"
 
-HALLMARK_TRAITS <- c(
-  "BMI", "HbA1c", "HDL", "LDL", "TRIG_HDL_RATIO",
-  "systolic_BP", "diastolic_BP", "ALST"
-)
+HALLMARK_TRAITS <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
 
 # ============================================================================
 # Helper function
@@ -64,39 +61,6 @@ cat("\n2. Loading and validating data...\n")
 
 main_df <- readRDS(MAIN_RDS)
 cat(sprintf("   Main dataframe: %d rows, %d columns\n", nrow(main_df), ncol(main_df)))
-
-UKB34521_FST <- Sys.getenv(
-  "UKB34521_FST",
-  "/n/no_backup2/patel/uk_biobank/main_data_34521/ukb34521.fst"
-)
-
-if (!"f.23129.0.0" %in% names(main_df)) {
-  if (requireNamespace("fst", quietly = TRUE) && file.exists(UKB34521_FST)) {
-    ukb34521 <- fst::read.fst(
-      UKB34521_FST,
-      columns = c("f.eid", "f.74.0.0", "f.23129.0.0", "f.23101.0.0")
-    )
-    if (!is.data.table(main_df)) main_df <- as.data.table(main_df)
-    setDT(ukb34521)
-    setnames(ukb34521, "f.eid", "eid")
-    add_cols <- setdiff(names(ukb34521), "eid")
-    add_cols <- add_cols[!add_cols %in% names(main_df)]
-    if (length(add_cols) > 0L) {
-      main_df <- merge(main_df, ukb34521[, c("eid", add_cols), with = FALSE], by = "eid", all.x = TRUE)
-      cat("   ✓ Merged ukb34521.fst columns:", paste(add_cols, collapse = ", "), "\n")
-    }
-  } else if (!file.exists(UKB34521_FST)) {
-    cat("   ⚠ f.23129.0.0 missing and ukb34521.fst not at", UKB34521_FST, "\n")
-  }
-}
-
-if (!"ALST" %in% names(main_df) && all(c("f.23129.0.0", "x.sex") %in% names(main_df))) {
-  main_df$ALST <- (0.958 * as.numeric(main_df[["f.23129.0.0"]])) -
-    (0.166 * as.numeric(main_df$x.sex)) - 0.308
-  cat("   ✓ Computed ALST from f.23129.0.0 and x.sex\n")
-} else if (!"ALST" %in% names(main_df)) {
-  cat("   ⚠ ALST unavailable: need f.23129.0.0 (from RDS or ukb34521) and x.sex\n")
-}
 
 # Try to load proteomics EIDs (saved with save(), not saveRDS())
 cat("   Loading proteomics EIDs (using load())...\n")
@@ -243,7 +207,7 @@ if ("GlycemicStatus" %in% colnames(main_df)) {
 
 # 7. Check generated input files
 cat("\n7. Checking generated input files...\n")
-STRATA <- c("full", "prediabetes", "diabetes")
+STRATA <- c("full")
 SAMPLE_TYPES <- c("proteins_only", "hallmarks_heldout")
 
 total_phenos <- 0

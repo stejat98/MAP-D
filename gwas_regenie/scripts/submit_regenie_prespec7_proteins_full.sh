@@ -36,7 +36,7 @@ echo "Submitting ${TOTAL_JOBS} jobs (full | proteins_only | prespec7 proteins)"
 echo "  PHENO_LIST_FILE=$PHENO_LIST_FILE"
 echo "  First line: $(head -1 "$PHENO_LIST_FILE")"
 
-# Match submit_proteins_all_strata.sh "full" stratum: medium partition, 3d walltime
+# Match submit_proteins_full.sh: medium partition, 3d walltime
 sbatch \
   --array=1-"${TOTAL_JOBS}" \
   --time=3-00:00:00 \

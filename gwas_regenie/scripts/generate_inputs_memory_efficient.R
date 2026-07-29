@@ -12,12 +12,10 @@ PROTEOMICS_EIDS_RDS <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RD
 VALIDATED_PROTEINS_CSV <- "/n/groups/patel/sivateja/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
 OUTPUT_BASE <- "/n/groups/patel/sivateja/regenie_pipeline/inputs"
 
-HALLMARK_TRAITS <- c("BMI", "HbA1c", "HDL", "LDL", "TRIG_HDL_RATIO", "systolic_BP", "diastolic_BP")
+HALLMARK_TRAITS <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
 
 STRATA <- list(
-  full = list(filter = NULL, name = "full"),
-  prediabetes = list(filter = "Prediabetes", name = "prediabetes"),
-  diabetes = list(filter = "Diabetes", name = "diabetes")
+  full = list(filter = NULL, name = "full")
 )
 
 `%notin%` <- Negate(`%in%`)
@@ -80,10 +78,6 @@ create_regenie_inputs <- function(df_subset, phenotype_name, output_dir) {
   valid_eids <- pheno_data$eid
 
   covar_cols_this <- covariate_cols
-  if (identical(phenotype_name, "ALST") && "BMI" %in% colnames(df_subset)) {
-    covar_cols_this <- unique(c(covariate_cols, "BMI"))
-    message("    ALST: adding BMI to REGENIE covariates (BMI-adjusted GWAS)")
-  }
   
   # Get covariates for valid individuals only
   covar_data <- df_subset[eid %in% valid_eids, c("eid", covar_cols_this), with = FALSE]

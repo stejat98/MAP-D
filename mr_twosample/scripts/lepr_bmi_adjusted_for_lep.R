@@ -203,8 +203,6 @@ cat(paste(rep("-", 80), collapse=""), "\n")
 # MR estimates (from TwoSampleMR)
 cat(sprintf("%-40s | %10.4f | %10.4f | %10.4f\n",
             "MR cis-Wald (Full, rs61779759)", 0.1171, 0.0549, 0.0330))
-cat(sprintf("%-40s | %10.4f | %10.4f | %10.4f\n",
-            "MR cis-Wald (Normoglycemic)", 0.0919, 0.0570, 0.1073))
 
 cat("\n================================================================\n")
 cat("INTERPRETATION\n")

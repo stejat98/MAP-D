@@ -21,26 +21,18 @@ OUTPUT_BASE <- Sys.getenv("REGENIE_INPUT_OUTPUT_BASE",
                           "/n/groups/patel/sivateja/regenie_pipeline/inputs")
 
 # Hallmark traits (non-proteomics / held-out REGENIE phenotypes)
-# ALST = appendicular lean soft tissue (kg): requires f.23129.0.0 + x.sex or precomputed ALST in RDS
-# ALST GWAS covariates additionally include BMI (see create_regenie_inputs) for lean mass conditional on body size.
-HALLMARK_TRAITS <- c(
-  "BMI", "HbA1c", "HDL", "LDL", "TRIG_HDL_RATIO",
-  "systolic_BP", "diastolic_BP", "ALST"
-)
+HALLMARK_TRAITS <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
 
-# Strata
+# Full cohort only
 STRATA <- list(
-  full = list(filter = NULL, name = "full"),
-  prediabetes = list(filter = "Prediabetes", name = "prediabetes"),
-  diabetes = list(filter = "Diabetes", name = "diabetes")
+  full = list(filter = NULL, name = "full")
 )
 
-# Optional fast path (e.g. single new hallmark): set REGENIE_ONLY_STRATUM=full,
-# REGENIE_SKIP_PROTEINS=1, REGENIE_ONLY_HALLMARKS=ALST
+# Optional fast path (e.g. single hallmark): set REGENIE_SKIP_PROTEINS=1,
+# REGENIE_ONLY_HALLMARKS=BMI
 ONLY_STRATUM <- Sys.getenv("REGENIE_ONLY_STRATUM", "")
 SKIP_PROTEINS <- Sys.getenv("REGENIE_SKIP_PROTEINS", "") == "1"
 ONLY_HALLMARKS <- Sys.getenv("REGENIE_ONLY_HALLMARKS", "")
-ALST_SKIP_BMI_COVAR <- Sys.getenv("ALST_SKIP_BMI_COVAR", "") == "1"
 
 # ============================================================================
 # Helper function: %notin%
@@ -105,42 +97,6 @@ if (!"eid" %in% colnames(main_df)) {
 # Ensure GlycemicStatus column exists
 if (!"GlycemicStatus" %in% colnames(main_df)) {
   stop("ERROR: 'GlycemicStatus' column not found in main dataframe")
-}
-
-# --- ALST (appendicular lean soft tissue, kg): 0.958 * FFM(23129) - 0.166 * sex - 0.308
-# If appendicular FFM is not in the PEWAS RDS, merge UKB baseline fst (same as interactive analyses).
-UKB34521_FST <- Sys.getenv(
-  "UKB34521_FST",
-  "/n/no_backup2/patel/uk_biobank/main_data_34521/ukb34521.fst"
-)
-
-if (!"f.23129.0.0" %in% names(main_df)) {
-  if (isTRUE(requireNamespace("fst", quietly = TRUE)) && file.exists(UKB34521_FST)) {
-    cat("Merging UKB baseline fields from ukb34521.fst (f.23129 for ALST)...\n")
-    ukb34521 <- fst::read.fst(
-      UKB34521_FST,
-      columns = c("f.eid", "f.74.0.0", "f.23129.0.0", "f.23101.0.0")
-    )
-    setDT(ukb34521)
-    setnames(ukb34521, "f.eid", "eid")
-    add_cols <- setdiff(names(ukb34521), "eid")
-    add_cols <- add_cols[!add_cols %in% names(main_df)]
-    if (length(add_cols) > 0L) {
-      main_df <- merge(main_df, ukb34521[, c("eid", add_cols), with = FALSE], by = "eid", all.x = TRUE)
-      cat("  Added columns:", paste(add_cols, collapse = ", "), "\n")
-    }
-  } else if (!file.exists(UKB34521_FST)) {
-    cat("WARNING: f.23129.0.0 not in main RDS and UKB34521_FST not found:\n  ", UKB34521_FST, "\n", sep = "")
-  } else {
-    stop("Package 'fst' is required to read ukb34521.fst. Install with install.packages('fst').")
-  }
-}
-
-if (!"ALST" %in% names(main_df) && all(c("f.23129.0.0", "x.sex") %in% names(main_df))) {
-  main_df[, ALST := (0.958 * as.numeric(f.23129.0.0)) - (0.166 * as.numeric(x.sex)) - 0.308]
-  cat("Computed ALST from f.23129.0.0 and x.sex\n")
-} else if (!"ALST" %in% names(main_df)) {
-  cat("WARNING: ALST could not be computed (need f.23129.0.0 and x.sex in main_df).\n")
 }
 
 # ============================================================================
@@ -231,14 +187,6 @@ create_regenie_inputs <- function(df_subset, phenotype_name, output_dir, stratum
   }
 
   covar_cols_this <- covariate_cols
-  if (identical(phenotype_name, "ALST") && isTRUE(ALST_SKIP_BMI_COVAR)) {
-    cat("    ALST: ALST_SKIP_BMI_COVAR=1 — NOT adding BMI to covariates (unadjusted sensitivity)\n")
-  } else if (identical(phenotype_name, "ALST") && "BMI" %in% colnames(df_subset)) {
-    covar_cols_this <- unique(c(covariate_cols, "BMI"))
-    cat("    ALST: adding BMI to REGENIE covariates (BMI-adjusted / lean conditional on body size)\n")
-  } else if (identical(phenotype_name, "ALST")) {
-    cat("    WARNING: ALST inputs — column 'BMI' not found; GWAS will not be BMI-adjusted\n")
-  }
   
   # Extract phenotype and eid only first (memory efficient)
   pheno_data <- df_subset[, .(eid, phenotype = get(phenotype_name))]

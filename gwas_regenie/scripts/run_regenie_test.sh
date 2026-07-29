@@ -122,7 +122,7 @@ if [ ! -z "$EXTRACT_FLAG" ] && [ -f "$FILTERED_SNP_LIST" ]; then
         # Use MAC >= 100 (recommended for UK Biobank, matches prefilter_snps.sh)
         # This is conservative but ensures SNPs remain polymorphic after residualization
         # Even though the filtered list was created with MAF 0.001 or MAC 50/100 on full dataset,
-        # when analyzing subsets (e.g., diabetes stratum), SNPs may have lower MAC
+        # when analyzing subsets, SNPs may have lower MAC
         # Using MAC >= 100 matches the standard UK Biobank REGENIE practice
         MIN_MAC=100
         if [ ! -z "$EXTRACT_FLAG" ]; then

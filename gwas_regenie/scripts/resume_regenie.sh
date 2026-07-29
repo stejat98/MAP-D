@@ -23,7 +23,7 @@ if [ ! -f "$PHENO_LIST_FILE" ]; then
     echo "Generating full phenotype list..."
     rm -f "$PHENO_LIST_FILE"
     
-    STRATA=("full" "prediabetes" "diabetes")
+    STRATA=("full")
     SAMPLE_TYPES=("proteins_only" "hallmarks_heldout")
     
     for STRATUM in "${STRATA[@]}"; do

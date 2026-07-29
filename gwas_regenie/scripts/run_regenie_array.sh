@@ -4,8 +4,7 @@
 #SBATCH --mem=50G
 #SBATCH -p long
 # Note: Time limit should be overridden by submit scripts based on stratum:
-#   - Diabetes: 11:59:00 (short partition, ~8,435 individuals)
-#   - Prediabetes: 3-00:00:00 (medium partition, ~45K individuals)
+#   - Full cohort: 10-00:00:00 (long partition, ~400K individuals)
 #   - Full: 20-00:00:00 (long partition, ~418K individuals)
 # These limits account for sample size scaling and fairshare optimization
 #SBATCH -o /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_%A_%a.out
@@ -19,7 +18,7 @@
 # Parse command line arguments or use SLURM_ARRAY_TASK_ID
 if [ -z "$1" ]; then
     # Get phenotype info from array task ID
-    PHENO_LIST_FILE="${PHENO_LIST_FILE:-/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list.txt}"
+    PHENO_LIST_FILE="${PHENO_LIST_FILE:-/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_hallmarks.txt}"
     if [ ! -f "$PHENO_LIST_FILE" ]; then
         echo "ERROR: Phenotype list file not found: $PHENO_LIST_FILE"
         exit 1
@@ -181,7 +180,7 @@ if [ $STEP1_COMPLETE -eq 0 ]; then
             # Use MAC >= 100 (recommended for UK Biobank, matches prefilter_snps.sh)
             # This is conservative but ensures SNPs remain polymorphic after residualization
             # Even though the filtered list was created with MAF 0.001 or MAC 50/100 on full dataset,
-            # when analyzing subsets (e.g., diabetes stratum), SNPs may have lower MAC
+            # when analyzing subsets, SNPs may have lower MAC
             # Using MAC >= 100 matches the standard UK Biobank REGENIE practice
             MIN_MAC=100
             if [ ! -z "$EXTRACT_FLAG" ]; then

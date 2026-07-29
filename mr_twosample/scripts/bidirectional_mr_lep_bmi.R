@@ -33,12 +33,9 @@ cat("LEP pQTL instruments:\n")
 print(lep_snp_info)
 cat("\n")
 
-# Strata files
+# Held-out BMI GWAS (full cohort)
 strata <- list(
-  full = "results/GWAS/BMI/BMI_full_all_chr.regenie.gz",
-  prediabetes = "results/GWAS/BMI/BMI_prediabetes_all_chr.regenie.gz", 
-  diabetes = "results/GWAS/BMI/BMI_diabetes_all_chr.regenie.gz",
-  normoglycemic = "results/GWAS/BMI/BMI_normoglycemic_all_chr.regenie.gz"
+  full = "results/GWAS/BMI/BMI_full_all_chr.regenie.gz"
 )
 
 cat("================================================================================\n")

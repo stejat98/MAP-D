@@ -180,8 +180,7 @@ MAP-D/
 │   └── scripts/
 ├── docs/genetics_pipeline/                                           # Genetics pipeline documentation
 │   ├── WALKTHROUGH_SPLIT_SAMPLE_MR.md                                # End-to-end split-sample GWAS + MR guide
-│   ├── FILE_MANIFEST.md                                              # Provenance of every staged script
-│   └── build_github_staging.R                                        # Reproducible staging script
+│   └── FILE_MANIFEST.md                                              # Provenance of every script
 └── results/                                                          # Analysis results
     ├── figures/                                                      # Generated plots
     ├── tables/                                                       # Summary tables
@@ -235,7 +234,8 @@ for shinyapps.io. Only `app.R`, `plots.R`, and `data/mapd.rds` are required at r
 The genetics arm of MAP-D tests causal relationships between plasma proteins and three
 cardiometabolic hallmarks: **BMI**, **HbA1c**, and the **triglyceride/HDL ratio
 (`TRIG_HDL_RATIO`)**. The GWAS and MR analyses reported in the manuscript were run in the
-**full cohort only**; the glycemic subgroups used elsewhere in MAP-D are not part of this arm.
+**full cohort only**. The glycemic subgroups used elsewhere in MAP-D, and the other
+metabolic traits, are not part of this arm.
 
 To avoid sample overlap between the exposure and outcome GWAS — a key assumption of
 two-sample MR — UK Biobank is split into two non-overlapping subsets:
@@ -276,9 +276,7 @@ and the resulting summary-statistic paths — is in
 These scripts were written for an HPC cluster with SLURM and contain absolute paths to
 UK Biobank genotype and phenotype files; adapt the paths at the top of each script before
 running. Individual-level UK Biobank data cannot be redistributed and is not included here.
-Some scripts additionally support the glycemic strata, but those runs are exploratory and
-were not used for the manuscript. LD score regression uses the official
-[LDSC](https://github.com/bulik/ldsc) tool via
+LD score regression uses the official [LDSC](https://github.com/bulik/ldsc) tool via
 `gwas_regenie/scripts/regenie_to_ldsc_munge_input.py`. Scripts that query the OpenGWAS API
 read a JWT from `$OPENGWAS_JWT` or a gitignored `.secrets/opengwas_jwt` file.
 
