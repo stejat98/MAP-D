@@ -393,8 +393,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Data Availability
 - **UK Biobank Data**: The data from the UK Biobank that support the findings of this study are available upon application (https://www.ukbiobank.ac.uk/register-apply/).
+- **MAP-D atlas summary statistics (Supplementary Data S1)**: https://doi.org/10.6084/m9.figshare.30007306 — the integrated atlas workbook (bidirectional observational associations, bidirectional Mendelian randomization, STEP 1/2 semaglutide comparisons, incident-CAD associations, DrugBank matches, GTEx tissue enrichment, and LDSC genetic correlations). figshare is the canonical citable copy; the same workbook is mirrored in this repository at [`app/SUPP_TABLE_1_05_20_2026.xlsx`](app/SUPP_TABLE_1_05_20_2026.xlsx) (the source the interactive atlas is built from) and its worksheets are documented in [`docs/supplementary_data_S1.md`](docs/supplementary_data_S1.md).
+- **Hallmark GWAS summary statistics (BMI, HbA1c, TG/HDL)**: https://doi.org/10.6084/m9.figshare.32048550
 - **MAP-D Web Resource (interactive atlas)**: https://stejat98-map-d.share.connect.posit.cloud/ (source in [`app/`](app/))
-- **Figshare Repository**: https://doi.org/10.6084/m9.figshare.30007306.v1
+- **Code archive (Zenodo)**: https://doi.org/10.5281/zenodo.17071087
 - **GitHub Repository**: https://github.com/stejat98/MAP-D
 
 ## Acknowledgments
