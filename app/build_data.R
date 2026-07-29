@@ -189,12 +189,6 @@ ldsc <- read_excel(XLSX, sheet = "LDSC_genetic_corrs")
 # =============================================================================
 specs <- read_excel(XLSX, sheet = "Analysis_Layer_Model_Specs")
 names(specs) <- str_trim(names(specs))
-# Reverse Observational PWAS did not adjust for smoking status (per manuscript methods)
-specs$Covariates <- ifelse(
-  specs[["Analysis Layer"]] == "Reverse Observational PWAS",
-  str_squish(str_remove(specs$Covariates, regex(",?\\s*smoking status", ignore_case = TRUE))),
-  specs$Covariates
-)
 
 # =============================================================================
 # Derived summaries
