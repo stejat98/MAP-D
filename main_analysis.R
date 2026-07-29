@@ -2,7 +2,7 @@
 
 # =============================================================================
 # MAP-D Main Analysis Pipeline
-# Metabolic Atlas of Progression to Diabetes (MAP-D)
+# Metabolic Atlas of the Proteome in Diabetes (MAP-D)
 # 
 # This script orchestrates the complete MAP-D analysis pipeline including:
 # 1. Data preprocessing and quality control

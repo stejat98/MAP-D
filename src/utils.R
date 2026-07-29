@@ -1,6 +1,6 @@
 # =============================================================================
 # MAP-D Utility Functions
-# Metabolic Atlas of Progression to Diabetes (MAP-D)
+# Metabolic Atlas of the Proteome in Diabetes (MAP-D)
 # =============================================================================
 
 #' Load and validate required packages

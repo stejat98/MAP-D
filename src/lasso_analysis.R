@@ -1,6 +1,6 @@
 # =============================================================================
 # MAP-D LASSO Analysis Module
-# Metabolic Atlas of Progression to Diabetes (MAP-D)
+# Metabolic Atlas of the Proteome in Diabetes (MAP-D)
 # =============================================================================
 
 # Source required files

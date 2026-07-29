@@ -1,6 +1,6 @@
 # =============================================================================
 # MAP-D R Package Requirements
-# Metabolic Atlas of Progression to Diabetes (MAP-D)
+# Metabolic Atlas of the Proteome in Diabetes (MAP-D)
 # =============================================================================
 
 # Required R version

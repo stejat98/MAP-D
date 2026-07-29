@@ -1,6 +1,6 @@
 # =============================================================================
 # MAP-D Analysis Configuration File
-# Metabolic Atlas of Progression to Diabetes (MAP-D)
+# Metabolic Atlas of the Proteome in Diabetes (MAP-D)
 # =============================================================================
 
 # Project Information
