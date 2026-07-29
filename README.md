@@ -15,6 +15,7 @@ MAP-D leverages proteomic data on 2,923 proteins measured in a median of 47,963 
 - **Predicitive analysis**: LASSO regression modeling for predictive biomarker discovery
 - **Drug Target Discovery**: Integration with DrugBank for therapeutic target identification
 - **Split-sample GWAS and Mendelian randomization**: REGENIE hallmark GWAS in a held-out sample plus forward, reverse, and deCODE-replication MR under `gwas_regenie/`, `mr_twosample/`, and `figures_tables/` (see [below](#split-sample-gwas-and-mendelian-randomization))
+- **Interactive web atlas**: A Shiny companion app (`app/`) for exploring every result layer — atlas, trials, MR, evidence funnel, CAD, and drug targeting (see [below](#interactive-web-application-app))
 
 
 MAP-D provides:
@@ -148,6 +149,15 @@ MAP-D/
 ├── test_with_synthetic_data.R                                       # Test script with synthetic data
 ├── README.md                                                         # This file
 ├── LICENSE                                                           # License file
+├── app/                                                              # Interactive Shiny web app (manuscript companion)
+│   ├── app.R                                                         # Shiny UI + server (bslib navbar, 9 sections)
+│   ├── plots.R                                                       # Figure builders (volcano, triangulation, MR, CAD, ...)
+│   ├── build_data.R                                                  # Builds app/data/mapd.rds from the supplementary workbook
+│   ├── data/mapd.rds                                                 # Pre-built app data bundle (single source of truth)
+│   ├── SUPP_TABLE_1_05_20_2026.xlsx                                  # Supplementary workbook the app data is built from
+│   ├── manifest.json                                                 # Posit Connect Cloud deployment manifest
+│   ├── deploy.R                                                      # shinyapps.io deploy helper
+│   └── README.md                                                     # App-specific documentation
 ├── src/                                                              # Source code modules
 │   ├── utils.R                                                       # Utility functions
 │   ├── data_preprocessing.R                                          # Data preprocessing
@@ -177,6 +187,48 @@ MAP-D/
     ├── tables/                                                       # Summary tables
     └── *.csv, *.RDS                                                  # Analysis output files
 ```
+
+## Interactive Web Application (`app/`)
+
+The `app/` directory contains the interactive **MAP-D atlas** — a Shiny application that
+accompanies the manuscript and lets readers explore every result layer. It is organised as a
+guided tour through the paper's triangulation narrative (Figures 1–5):
+
+- **Overview** — study design and triangulation framework
+- **Atlas** — proteome-wide hallmark associations (volcano, top proteins, cross-hallmark correlation)
+- **Triangulation & Trials** — UK Biobank vs. STEP 1/2 semaglutide effects (reversion vs. persistent)
+- **Bidirectional MR** — protein-first and hallmark-first Mendelian-randomization architecture
+- **Evidence Funnel** — winnowing of proteins across evidence layers
+- **Persistent → CAD** — incident coronary-artery-disease associations
+- **Drug Targeting** — DrugBank-matched approved drugs
+- **Protein Explorer** — every line of evidence for any single protein
+
+### Data
+
+The app reads a single pre-built bundle, `app/data/mapd.rds`, produced from the supplementary
+workbook (`SUPP_TABLE_1_05_20_2026.xlsx`) by `app/build_data.R` — the single source of truth.
+Rebuild it whenever the workbook changes:
+
+```bash
+cd app
+Rscript build_data.R      # writes data/mapd.rds and asserts the manuscript's headline numbers
+```
+
+### Run locally
+
+```bash
+cd app
+Rscript -e "shiny::runApp('.', launch.browser=TRUE)"
+```
+
+Requires `shiny`, `bslib`, `plotly`, `DT`, `dplyr`, `tidyr`, `stringr`, and `ggplot2`.
+
+### Deploy
+
+The app is deployed as a public web resource (see [Data Availability](#data-availability)).
+`app/manifest.json` (generated with `rsconnect::writeManifest()`) makes the `app/` directory
+directly publishable on **Posit Connect Cloud** from this repository; `app/deploy.R` is a helper
+for shinyapps.io. Only `app.R`, `plots.R`, and `data/mapd.rds` are required at runtime.
 
 ## Split-Sample GWAS and Mendelian Randomization
 
@@ -341,7 +393,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Data Availability
 - **UK Biobank Data**: The data from the UK Biobank that support the findings of this study are available upon application (https://www.ukbiobank.ac.uk/register-apply/).
-- **MAP-D Web Resource**: https://btierneyshiny.shinyapps.io/mapd-visualizer/
+- **MAP-D Web Resource (interactive atlas)**: https://stejat98-map-d.share.connect.posit.cloud/ (source in [`app/`](app/))
 - **Figshare Repository**: https://doi.org/10.6084/m9.figshare.30007306.v1
 - **GitHub Repository**: https://github.com/stejat98/MAP-D
 
