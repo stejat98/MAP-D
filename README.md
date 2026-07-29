@@ -14,6 +14,7 @@ MAP-D leverages proteomic data on 2,923 proteins measured in a median of 47,963 
 - **Comprehensive PWAS Analysis**: Protein-wide association studies across metabolic phenotypes and glycemic groups
 - **Predicitive analysis**: LASSO regression modeling for predictive biomarker discovery
 - **Drug Target Discovery**: Integration with DrugBank for therapeutic target identification
+- **Split-sample GWAS and Mendelian randomization**: REGENIE hallmark GWAS in a held-out sample plus forward, reverse, and deCODE-replication MR under `gwas_regenie/`, `mr_twosample/`, and `figures_tables/` (see [below](#split-sample-gwas-and-mendelian-randomization))
 
 
 MAP-D provides:
@@ -160,11 +161,74 @@ MAP-D/
 │   ├── raw/                                                          # Raw data files
 │   ├── processed/                                                    # Processed data
 │   └── external/                                                     # External datasets
+├── gwas_regenie/                                                     # Split-sample REGENIE GWAS
+│   ├── scripts/                                                      # Input generation, submission, post-processing
+│   └── docs/                                                         # Run plans and summary-statistic paths
+├── mr_twosample/                                                     # Two-sample and bidirectional MR
+│   └── scripts/                                                      # Forward, reverse, and deCODE replication MR
+├── figures_tables/                                                   # Manuscript figures and summary tables
+│   └── scripts/
+├── docs/genetics_pipeline/                                           # Genetics pipeline documentation
+│   ├── WALKTHROUGH_SPLIT_SAMPLE_MR.md                                # End-to-end split-sample GWAS + MR guide
+│   ├── FILE_MANIFEST.md                                              # Provenance of every staged script
+│   └── build_github_staging.R                                        # Reproducible staging script
 └── results/                                                          # Analysis results
     ├── figures/                                                      # Generated plots
     ├── tables/                                                       # Summary tables
     └── *.csv, *.RDS                                                  # Analysis output files
 ```
+
+## Split-Sample GWAS and Mendelian Randomization
+
+The genetics arm of MAP-D tests causal relationships between plasma proteins and three
+cardiometabolic hallmarks: **BMI**, **HbA1c**, and the **triglyceride/HDL ratio
+(`TRIG_HDL_RATIO`)**. The GWAS and MR analyses reported in the manuscript were run in the
+**full cohort only**; the glycemic subgroups used elsewhere in MAP-D are not part of this arm.
+
+To avoid sample overlap between the exposure and outcome GWAS — a key assumption of
+two-sample MR — UK Biobank is split into two non-overlapping subsets:
+
+- **Proteomics sample**: participants with Olink measurements, used for the protein GWAS
+- **Held-out sample**: the remaining participants, used for the hallmark trait GWAS
+
+The split is performed in `gwas_regenie/scripts/generate_inputs.R` and verified by
+`gwas_regenie/scripts/preflight_checks.R`, which asserts that the two EID sets are disjoint.
+
+### MR directions
+
+| Direction | Instruments from | Outcome looked up in | Key scripts |
+|-----------|------------------|----------------------|-------------|
+| Forward | UKB-PPP *cis*-pQTLs | Held-out hallmark GWAS | `mr_twosample/scripts/twosampleMR_cis_trans_chunked.R`, `twosampleMR_proteins_{bmi,hba1c,trig_hdl_ratio_full}.R` |
+| Reverse | Held-out hallmark GWAS | deCODE Iceland pQTLs | `mr_twosample/scripts/reverse_mr_bmi_to_all_proteins.R`, `reverse_mr_phenotype_to_all_proteins.R` |
+| Forward replication | deCODE *cis*-pQTLs | Held-out hallmark GWAS | `mr_twosample/scripts/bidirectional_mr_decode_trig_hdl.R` |
+
+Using deCODE as the reverse-MR outcome gives zero sample overlap with UK Biobank, and
+restricting the forward analysis to *cis*-pQTLs limits horizontal pleiotropy.
+
+### Sensitivity analysis
+
+Reverse-MR instruments are distance-pruned at 500 kb in the primary analysis. A sensitivity
+analysis repeats this with stricter LD clumping at r² < 0.01 against the 1000G EUR panel:
+
+```bash
+sbatch mr_twosample/scripts/submit_reverse_mr_r2clump.sh   # BMI and TRIG_HDL_RATIO, 16 chunks each
+Rscript mr_twosample/scripts/combine_reverse_mr_r2clump.R  # combine chunks, compare against 500 kb results
+```
+
+A full end-to-end walkthrough — input generation, REGENIE submission, every MR direction,
+and the resulting summary-statistic paths — is in
+[`docs/genetics_pipeline/WALKTHROUGH_SPLIT_SAMPLE_MR.md`](docs/genetics_pipeline/WALKTHROUGH_SPLIT_SAMPLE_MR.md).
+
+### Notes on running these scripts
+
+These scripts were written for an HPC cluster with SLURM and contain absolute paths to
+UK Biobank genotype and phenotype files; adapt the paths at the top of each script before
+running. Individual-level UK Biobank data cannot be redistributed and is not included here.
+Some scripts additionally support the glycemic strata, but those runs are exploratory and
+were not used for the manuscript. LD score regression uses the official
+[LDSC](https://github.com/bulik/ldsc) tool via
+`gwas_regenie/scripts/regenie_to_ldsc_munge_input.py`. Scripts that query the OpenGWAS API
+read a JWT from `$OPENGWAS_JWT` or a gitignored `.secrets/opengwas_jwt` file.
 
 ## Analysis Pipeline
 

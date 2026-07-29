@@ -32,7 +32,11 @@ executeModel <- function (formula,data,exposure,depvar,adjustments) {
   mod <- NULL
   results <- NULL
   
-  df_full <- data[,c(exposure,adjustments,depvar)]
+  # data.table: DT[, c("a","b")] is j-expression, not column subset; that can
+  # return a vector and break tidyr::drop_na(). Always use a plain data.frame slice.
+  need_cols <- unique(c(exposure, adjustments, depvar))
+  need_cols <- need_cols[need_cols %in% names(data)]
+  df_full <- as.data.frame(data)[, need_cols, drop = FALSE]
   
   df_filter_NA_full <- df_full %>% drop_na()
   

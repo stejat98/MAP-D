@@ -1,0 +1,4 @@
+diabetes|hallmarks_heldout|BMI
+diabetes|hallmarks_heldout|HbA1c
+prediabetes|hallmarks_heldout|BMI
+prediabetes|hallmarks_heldout|HbA1c

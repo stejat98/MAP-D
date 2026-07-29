@@ -1,0 +1,34 @@
+# Local secrets (OpenGWAS JWT, etc.)
+.secrets/
+
+# Third-party LDSC tooling: use https://github.com/bulik/ldsc instead of vendoring
+ldsc_py3/
+
+# Genetics / MR pipeline outputs (local HPC only; do not commit)
+gwas_regenie/results/
+gwas_regenie/inputs/
+mr_twosample/results/
+figures_tables/results/
+gwas_regenie/**/slurm/*.out
+gwas_regenie/**/slurm/*.err
+mr_twosample/**/slurm/*.out
+mr_twosample/**/slurm/*.err
+figures_tables/**/slurm/*.out
+figures_tables/**/slurm/*.err
+*.regenie.gz
+
+# Genotype-related binary formats if placed under pipeline dirs
+gwas_regenie/**/*.bed
+gwas_regenie/**/*.bim
+gwas_regenie/**/*.fam
+
+# UK Biobank individual-level objects if ever copied under pipeline dirs (never commit)
+gwas_regenie/**/*.RDS
+gwas_regenie/**/*.rds
+gwas_regenie/**/*.fst
+mr_twosample/**/*.RDS
+mr_twosample/**/*.rds
+mr_twosample/**/*.fst
+figures_tables/**/*.RDS
+figures_tables/**/*.rds
+figures_tables/**/*.fst

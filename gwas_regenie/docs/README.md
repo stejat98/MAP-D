@@ -1,0 +1,136 @@
+# REGENIE GWAS Pipeline
+
+This pipeline runs GWAS using REGENIE for validated plasma proteins and clinical hallmark traits across three population strata (full, prediabetes, diabetes), with strict sample splitting for split-sample MR design.
+
+## Overview
+
+- **Proteins GWAS**: Run in proteomics-only sample (`eid %in% olink_eids_for_proteins_gwas`)
+- **Hallmarks GWAS**: Run in held-out sample (`eid %notin% olink_eids_for_proteins_gwas`)
+- **Strata**: Full population, Prediabetes, Diabetes
+
+## Directory Structure
+
+```
+regenie_pipeline/
+├── inputs/
+│   ├── full/
+│   │   ├── proteins_only/      # Protein phenotypes (proteomics sample)
+│   │   └── hallmarks_heldout/   # Hallmark traits (held-out sample)
+│   ├── prediabetes/
+│   │   ├── proteins_only/
+│   │   └── hallmarks_heldout/
+│   └── diabetes/
+│       ├── proteins_only/
+│       └── hallmarks_heldout/
+├── scripts/
+│   ├── generate_inputs.R        # Generate pheno.txt and covar.txt files
+│   ├── run_regenie_array.sh     # REGENIE step 1 + step 2 (array job)
+│   ├── submit_regenie.sh        # Submit array jobs
+│   └── preflight_checks.R       # Validation and sanity checks
+├── slurm/                        # SLURM log files
+└── results/
+    ├── step1/                    # Step 1 outputs (null models)
+    └── step2/                    # Step 2 outputs (association results)
+```
+
+## Input Files
+
+1. **Main phenotype/covariate dataframe**:
+   `/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS`
+
+2. **Proteomics EID list**:
+   `/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS`
+
+3. **Validated proteins list**:
+   `/n/groups/patel/sivateja/UKB/merged_validated_proteins_2.csv`
+
+4. **Genotype data**:
+   - Step 1: `/n/groups/patel/IGLOO/UKB/gwas/ukb_nonimputed_snps`
+   - Step 2: `/n/groups/patel/IGLOO/UKB/gwas/UKBallchr`
+
+## Hallmark Traits
+
+- BMI
+- HbA1c
+- HDL
+- LDL
+- TRIG_HDL_RATIO
+- systolic_BP
+- diastolic_BP
+- **ALST** (appendicular lean soft tissue, kg): `0.958 × f.23129.0.0 − 0.166 × x.sex − 0.308`. If `f.23129.0.0` is not in the main RDS, `generate_inputs.R` will merge UKB baseline columns from **`ukb34521.fst`** (default path under `/n/no_backup2/patel/uk_biobank/main_data_34521/`), selecting `f.eid`, `f.74.0.0`, `f.23129.0.0`, `f.23101.0.0`, joining on `eid` = `f.eid`. Override with env var **`UKB34521_FST`**. Requires the R package **`fst`**.
+
+## Usage
+
+### Step 1: Preflight Checks
+
+```bash
+Rscript /n/groups/patel/sivateja/regenie_pipeline/scripts/preflight_checks.R
+```
+
+This validates input files, checks data structure, and reports sample sizes.
+
+### Step 2: Generate Input Files
+
+```bash
+Rscript /n/groups/patel/sivateja/regenie_pipeline/scripts/generate_inputs.R
+```
+
+This script:
+- Loads the main dataframe, proteomics EIDs, and validated proteins
+- Creates stratum-specific datasets
+- Applies EID split rules (proteins in proteomics sample, hallmarks in held-out)
+- Writes `pheno.txt` and `covar.txt` for each phenotype
+
+### Step 3: Submit GWAS Jobs
+
+```bash
+/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_regenie.sh
+```
+
+This script:
+- Generates a phenotype list from generated input files
+- Submits SLURM array jobs for all phenotypes
+- Each job runs REGENIE step 1 (null model) and step 2 (association testing)
+
+## REGENIE Configuration
+
+- **Step 1**: Uses `ukb_nonimputed_snps` with `--bsize 1000`, `--lowmem`
+- **Step 2**: Uses `UKBallchr` with `--bsize 400`
+- **Threads**: 8
+- **Memory**: 50G
+- **Time**: 7 days (long partition)
+
+## Output Files
+
+### Step 1 Outputs
+- `regenie_step1_{phenotype}_pred.list`: Prediction file for step 2
+- `regenie_step1_{phenotype}.log`: Log file
+
+### Step 2 Outputs
+- `regenie_step2_{phenotype}.regenie.gz`: Association results (gzipped)
+- `regenie_step2_{phenotype}.log`: Log file
+
+## Sample Split Enforcement
+
+The pipeline strictly enforces the EID split:
+
+- **Proteins**: Only individuals where `eid %in% olink_eids_for_proteins_gwas`
+- **Hallmarks**: Only individuals where `eid %notin% olink_eids_for_proteins_gwas`
+
+This ensures no overlap between protein and hallmark GWAS samples, supporting split-sample MR design.
+
+## Monitoring Jobs
+
+```bash
+# Check job status
+squeue -u $USER
+
+# View logs
+tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_*.out
+```
+
+## Notes
+
+- All work is performed within `/n/groups/patel/sivateja/`
+- Reference implementation (read-only): `/n/groups/patel/shakson_ukb/UK_Biobank/BScripts/GWAS/REGENIE`
+- The pipeline handles continuous traits by default; binary traits require `--bt` flag modification

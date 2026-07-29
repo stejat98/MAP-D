@@ -1,0 +1,7 @@
+full|proteins_only|protein_x.12
+full|proteins_only|protein_x.1039
+full|proteins_only|protein_x.1137
+full|proteins_only|protein_x.1156
+full|proteins_only|protein_x.1344
+full|proteins_only|protein_x.1345
+full|proteins_only|protein_x.1572
