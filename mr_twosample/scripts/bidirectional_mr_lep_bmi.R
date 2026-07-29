@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 # Bidirectional MR Analysis: LEP <-> BMI Across All Strata
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 library(data.table)
 library(readxl)
 
@@ -9,7 +9,7 @@ cat("===========================================================================
 cat("      Bidirectional MR Analysis: LEP <-> BMI Across All Strata\n")
 cat("================================================================================\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 # Load LEP pQTL data
 st10 <- read_excel("41586_2023_6592_MOESM3_ESM.xlsx", sheet = "ST10", skip = 3)

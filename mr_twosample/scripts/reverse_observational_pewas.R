@@ -13,7 +13,7 @@
 # more interpretable when compared to reverse MR (Phenotype -> Protein).
 # =============================================================================
 
-source("/home/st320/Baseline_PEWAS_Linear_Functions_script.R")
+source("/path/to/home/Baseline_PEWAS_Linear_Functions_script.R")
 
 cat("================================================================================\n")
 cat("  Reverse PEWAS: Phenotype -> Protein Observational Regressions\n")
@@ -21,11 +21,11 @@ cat("===========================================================================
 
 # ---- Load data ----
 cat("Loading data...\n")
-data <- readRDS("/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS")
+data <- readRDS("/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS")
 cat(sprintf("Data dimensions: %d x %d\n\n", nrow(data), ncol(data)))
 
 # ---- Adjustments ----
-load("/home/st320/UKB_PEWAS/adjustments_survival_analysis.Rdata")
+load("/path/to/home/UKB_PEWAS/adjustments_survival_analysis.Rdata")
 adjustments <- c(adjustments, "f.74.0.0")
 cat(sprintf("Adjustments (%d vars): %s ...\n\n", length(adjustments),
             paste(head(adjustments, 5), collapse = ", ")))
@@ -48,7 +48,7 @@ rm(data); gc()
 phenotypes <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
 
 # ---- Output directory ----
-outdir <- "/n/groups/patel/sivateja/UKB/PEWAS_results"
+outdir <- "/path/to/project/UKB/PEWAS_results"
 
 # =============================================================================
 # REVERSE EWAS FUNCTION

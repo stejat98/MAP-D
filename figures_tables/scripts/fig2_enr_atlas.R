@@ -6,7 +6,7 @@
 #           (not intersection across all nine columns).
 # Panel B: LDSC genetic correlations (full glycemic stratum, held-out GWAS sample).
 # Values are read from Supplementary_Table_LDSC_genetic_correlations_pairwise.csv (same as S23).
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 suppressPackageStartupMessages({
   library(dplyr)
   library(tidyr)
@@ -14,12 +14,12 @@ suppressPackageStartupMessages({
   library(patchwork)
 })
 
-pewas_dir <- "/n/groups/patel/sivateja/UKB/PEWAS_results"
-out_pdf <- "/n/groups/patel/sivateja/regenie_pipeline/FIG2_ENR_ATLAS.pdf"
-out_png <- "/n/groups/patel/sivateja/regenie_pipeline/FIG2_ENR_ATLAS.png"
-out_b_pdf <- "/n/groups/patel/sivateja/regenie_pipeline/FIG2_LDSC_genetic_correlations_standalone.pdf"
-out_b_png <- "/n/groups/patel/sivateja/regenie_pipeline/FIG2_LDSC_genetic_correlations_standalone.png"
-ldsc_pairwise <- "/n/groups/patel/sivateja/regenie_pipeline/results/supplemental_tables/Supplementary_Table_LDSC_genetic_correlations_pairwise.csv"
+pewas_dir <- "/path/to/project/UKB/PEWAS_results"
+out_pdf <- "/path/to/project/regenie_pipeline/FIG2_ENR_ATLAS.pdf"
+out_png <- "/path/to/project/regenie_pipeline/FIG2_ENR_ATLAS.png"
+out_b_pdf <- "/path/to/project/regenie_pipeline/FIG2_LDSC_genetic_correlations_standalone.pdf"
+out_b_png <- "/path/to/project/regenie_pipeline/FIG2_LDSC_genetic_correlations_standalone.png"
+ldsc_pairwise <- "/path/to/project/regenie_pipeline/results/supplemental_tables/Supplementary_Table_LDSC_genetic_correlations_pairwise.csv"
 
 strata_rds <- c("non_T2D", "prediabetes", "T2D")
 strata_lab <- c("Normoglycemic", "Prediabetes", "T2D")

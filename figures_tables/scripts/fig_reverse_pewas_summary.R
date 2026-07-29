@@ -1,16 +1,16 @@
 #!/usr/bin/env Rscript
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
 
 cat("=== Reverse PEWAS Summary Figure (Fig 1b) ===\n")
 
-outdir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+outdir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 
-rev_obs <- read.csv("/n/groups/patel/sivateja/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
+rev_obs <- read.csv("/path/to/project/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
 
-step1_map <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv") %>%
+step1_map <- read.csv("/path/to/project/STEP1_merged_results.csv") %>%
   dplyr::select(Exposure, code) %>% distinct()
 rev_obs <- rev_obs %>% left_join(step1_map, by = c("Protein" = "Exposure"))
 

@@ -7,10 +7,10 @@
 #     or:  sbatch scripts/submit_regenie_prespec7_proteins_full.sh   # if the shebang job block is used
 
 set -euo pipefail
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
 REGENIE_SCRIPT="${SCRIPT_DIR}/run_regenie_array.sh"
 PHENO_LIST_FILE="${PHENO_LIST_FILE:-${SCRIPT_DIR}/pheno_list_prespec7_protein_bmi_full.txt}"
-PIPE="/n/groups/patel/sivateja/regenie_pipeline"
+PIPE="/path/to/project/regenie_pipeline"
 
 if [ ! -f "$PHENO_LIST_FILE" ]; then
   echo "ERROR: Pheno list not found: $PHENO_LIST_FILE"

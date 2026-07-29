@@ -4,7 +4,7 @@
 # into a single bidirectional file matching the BMI/HbA1c format
 # =============================================================================
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 cat("================================================================================\n")
 cat("  Merging bidirectional MR for TRIG_HDL_RATIO\n")

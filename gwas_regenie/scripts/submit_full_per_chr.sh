@@ -2,7 +2,7 @@
 # Submit REGENIE jobs for full strata split by chromosome (to avoid timeouts)
 # Each chromosome gets its own job (~13 hours each, well within 2-day limit)
 
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
 REGENIE_SCRIPT="${SCRIPT_DIR}/run_regenie_array_per_chr.sh"
 PHENO_LIST="${SCRIPT_DIR}/pheno_list_full_per_chr.txt"
 
@@ -40,8 +40,8 @@ sbatch \
   --mem=50G \
   --partition=medium \
   --job-name=regenie_full_perchr \
-  --output=/n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.out \
-  --error=/n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.err \
+  --output=/path/to/project/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.out \
+  --error=/path/to/project/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.err \
   --export=PHENO_LIST_FILE="$PHENO_LIST" \
   "$REGENIE_SCRIPT"
 
@@ -55,9 +55,9 @@ if [ $? -eq 0 ]; then
     echo "  ✓ Jobs can run in parallel (faster completion)"
     echo ""
     echo "Monitor jobs:"
-    echo "  squeue -u st320 -p medium | grep regenie_full_perchr"
+    echo "  squeue -u $USER -p medium | grep regenie_full_perchr"
     echo ""
-    echo "Logs: /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_full_perchr_*.out"
+    echo "Logs: /path/to/project/regenie_pipeline/slurm/regenie_full_perchr_*.out"
 else
     echo "  ✗ Failed to submit jobs"
     exit 1

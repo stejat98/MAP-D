@@ -15,11 +15,11 @@
 #    Forward observational (HbA1c ~ protein) + STEP 2 + forward MR (Bonferroni or FDR P<0.05)
 # -----------------------------------------------------------------------------
 
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 suppressPackageStartupMessages(library(dplyr))
 
-pewas_dir <- "/n/groups/patel/sivateja/UKB/PEWAS_results"
-mr_dir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+pewas_dir <- "/path/to/project/UKB/PEWAS_results"
+mr_dir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 out1 <- file.path(mr_dir, "Table_Funnel_Manuscript_Reverse_Triangulation.csv")
 out1_long <- file.path(mr_dir, "Table_Funnel_Manuscript_Reverse_Triangulation_long.csv")
 out_trig <- file.path(mr_dir, "Table_Funnel_Manuscript_Reverse_Triangulation_TG_HDL_supplemental.csv")
@@ -31,8 +31,8 @@ out_trig_global <- file.path(
 out_conc <- file.path(mr_dir, "Table_Concordant_Proteins_For_Drug_Overlap.csv")
 out2 <- file.path(mr_dir, "Table_Supplemental_HbA1c_Forward_Funnel_by_stratum.csv")
 
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
 rev_obs <- read.csv(file.path(pewas_dir, "Reverse_PEWAS_all_phenotypes_all_strata.csv"))
 prot_map <- step1 %>% dplyr::select(Exposure, code) %>% distinct()
 

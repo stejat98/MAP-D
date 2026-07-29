@@ -5,10 +5,10 @@
 #SBATCH -p medium
 # Modified version for full strata: processes ONE chromosome per job (to avoid timeouts)
 # Each chromosome takes ~13 hours, so 2-day limit is safe
-#SBATCH -o /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.out
-#SBATCH -e /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.err
+#SBATCH -o /path/to/project/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.out
+#SBATCH -e /path/to/project/regenie_pipeline/slurm/regenie_full_perchr_%A_%a.err
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=sivateja_tangirala@hms.harvard.edu
+#SBATCH --mail-user=your_email@example.com
 
 # REGENIE GWAS array job - PER CHROMOSOME VERSION (for full strata only)
 # Runs Step 1 (null model) once per phenotype, then Step 2 for ONE chromosome only
@@ -17,7 +17,7 @@
 # Parse command line arguments or use SLURM_ARRAY_TASK_ID
 if [ -z "$1" ]; then
     # Get phenotype info from array task ID
-    PHENO_LIST_FILE="${PHENO_LIST_FILE:-/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_full_per_chr.txt}"
+    PHENO_LIST_FILE="${PHENO_LIST_FILE:-/path/to/project/regenie_pipeline/scripts/pheno_list_full_per_chr.txt}"
     if [ ! -f "$PHENO_LIST_FILE" ]; then
         echo "ERROR: Phenotype list file not found: $PHENO_LIST_FILE"
         exit 1
@@ -45,11 +45,11 @@ echo "Array task ID: ${SLURM_ARRAY_TASK_ID:-N/A}"
 echo "=========================================="
 
 # Paths
-CONDA_ENV="${CONDA_ENV:-/n/groups/patel/sivateja/.conda/envs/regenie_env}"
+CONDA_ENV="${CONDA_ENV:-/path/to/project/.conda/envs/regenie_env}"
 GENO_PATH="/n/no_backup2/patel/uk_biobank/ukb_genetics/22881"
 FAM_PATH="${GENO_PATH}/bgen_converted"
-INPUT_PATH="/n/groups/patel/sivateja/regenie_pipeline/inputs/${STRATUM}/${SAMPLE_TYPE}/${PHENO_NAME}"
-OUTPUT_ROOT="/n/scratch/users/s/st320/regenie"
+INPUT_PATH="/path/to/project/regenie_pipeline/inputs/${STRATUM}/${SAMPLE_TYPE}/${PHENO_NAME}"
+OUTPUT_ROOT="/path/to/scratch/regenie"
 
 # Per-phenotype output dirs & prefixes
 OUTDIR_STEP1="${OUTPUT_ROOT}/${PHENO_NAME}/${STRATUM}/step1"
@@ -79,10 +79,10 @@ if [ -f /etc/profile.d/modules.sh ]; then
 fi
 
 # Conda setup
-export HOME=/n/groups/patel/sivateja
+export HOME=/path/to/project
 export CONDA_NO_PLUGINS=true
-export CONDA_PKGS_DIRS=/n/groups/patel/sivateja/.conda/pkgs
-export CONDA_ENVS_PATH=/n/groups/patel/sivateja/.conda/envs
+export CONDA_PKGS_DIRS=/path/to/project/.conda/pkgs
+export CONDA_ENVS_PATH=/path/to/project/.conda/envs
 
 module load conda/miniforge3/24.11.3-0
 eval "$(conda shell.bash hook)"
@@ -117,12 +117,12 @@ if [ $STEP1_COMPLETE -eq 0 ]; then
         awk 'BEGIN {print "ID_1 ID_2 missing sex"; print "0 0 0 D"} {print $1, $2, "0", $5}' "${FAM_PATH}/ukb22.fam" > "$SAMPLE_FILE"
         
         # Use pre-filtered SNP list
-        FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
+        FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
         if [ ! -f "$FILTERED_SNP_LIST" ]; then
-            FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_mac50.snplist"
+            FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_mac50.snplist"
         fi
         if [ ! -f "$FILTERED_SNP_LIST" ]; then
-            FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_mac100.snplist"
+            FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_mac100.snplist"
         fi
         
         EXCLUDE_FILE="${TMPDIR_STEP1}/exclude_snps.txt"

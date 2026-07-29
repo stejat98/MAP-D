@@ -8,7 +8,7 @@
 # No sample overlap: DECODE (Iceland) vs UKB (UK held-out non-Olink)
 # =============================================================================
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 library(data.table)
 library(readxl)
 
@@ -16,7 +16,7 @@ cat("===========================================================================
 cat("  Bidirectional MR: DECODE cis-pQTLs <-> UKB TRIG_HDL_RATIO\n")
 cat("================================================================================\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 output_dir <- "results/twosampleMR/bidirectional_decode_trig_hdl"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -51,7 +51,7 @@ mapping <- read.csv(mapping_file)
 mapping <- mapping[mapping$protein %in% names(cis_rsids_by_protein), ]
 cat(sprintf("  Proteins with both DECODE data and ST10 cis-pQTLs: %d\n", nrow(mapping)))
 
-decode_dir <- "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp"
+decode_dir <- "/path/to/shared_data/DECODE/pQTL/final_somascan_smp"
 
 # =============================================================================
 # STEP 3: Load UKB TRIG_HDL_RATIO GWAS (outcome for forward MR)

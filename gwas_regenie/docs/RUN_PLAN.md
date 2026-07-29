@@ -10,7 +10,7 @@ This plan walks you through running GWAS for validated proteins and hallmark tra
 **Purpose**: Validate all input files and data structure before running.
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 Rscript regenie_pipeline/scripts/preflight_checks.R
 ```
 
@@ -29,7 +29,7 @@ Rscript regenie_pipeline/scripts/preflight_checks.R
 **Purpose**: Create `pheno.txt` and `covar.txt` files for each phenotype with proper EID splitting.
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 Rscript regenie_pipeline/scripts/generate_inputs.R
 ```
 
@@ -54,7 +54,7 @@ Rscript regenie_pipeline/scripts/generate_inputs.R
 **Purpose**: Verify the pipeline works correctly on a small subset before full run.
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 bash regenie_pipeline/scripts/test_regenie.sh
 ```
 
@@ -85,7 +85,7 @@ bash regenie_pipeline/scripts/test_regenie.sh
 ### Option A: Interactive submission (with confirmation)
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 bash regenie_pipeline/scripts/submit_regenie.sh
 ```
 
@@ -98,7 +98,7 @@ This will:
 ### Option B: Non-interactive submission
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 bash regenie_pipeline/scripts/submit_regenie.sh --yes
 ```
 
@@ -123,15 +123,15 @@ squeue -u $USER
 **View logs**:
 ```bash
 # View latest log
-tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_*.out
+tail -f /path/to/project/regenie_pipeline/slurm/regenie_*.out
 
 # View specific log
-tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_<JOBID>_<TASKID>.out
+tail -f /path/to/project/regenie_pipeline/slurm/regenie_<JOBID>_<TASKID>.out
 ```
 
 **Check for errors**:
 ```bash
-grep -i error /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_*.out
+grep -i error /path/to/project/regenie_pipeline/slurm/regenie_*.out
 ```
 
 ---
@@ -141,10 +141,10 @@ grep -i error /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_*.out
 **Check outputs**:
 ```bash
 # Count completed jobs
-ls -1 /n/groups/patel/sivateja/regenie_pipeline/results/step2/*/*/*/*.regenie.gz | wc -l
+ls -1 /path/to/project/regenie_pipeline/results/step2/*/*/*/*.regenie.gz | wc -l
 
 # Check one result file
-zcat /n/groups/patel/sivateja/regenie_pipeline/results/step2/full/proteins_only/<protein_name>/regenie_step2_<protein_name>.regenie.gz | head
+zcat /path/to/project/regenie_pipeline/results/step2/full/proteins_only/<protein_name>/regenie_step2_<protein_name>.regenie.gz | head
 ```
 
 **Expected outputs**:

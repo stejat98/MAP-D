@@ -4,7 +4,7 @@
 # Using base R only
 
 # Define paths
-results_dir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR"
+results_dir <- "/path/to/project/regenie_pipeline/results/twosampleMR"
 cis_trans_dir <- file.path(results_dir, "cis_trans_chunked")
 
 cat("Reading cis/trans MR results...\n")

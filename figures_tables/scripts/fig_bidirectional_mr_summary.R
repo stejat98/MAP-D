@@ -4,12 +4,12 @@
 # Shows the asymmetry in causal direction across phenotypes
 # =============================================================================
 
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(ggplot2)
 library(dplyr)
 library(tidyr)
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 cat("=== Generating Bidirectional MR Summary Figure ===\n\n")
 

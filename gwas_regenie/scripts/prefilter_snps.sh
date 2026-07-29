@@ -9,7 +9,7 @@ CHR=22  # Step 1 uses chromosome 22
 MIN_MAC=100  # Minimum minor allele count (recommended: 100 for UK Biobank)
 
 # Output file
-OUTPUT_DIR="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps"
+OUTPUT_DIR="/path/to/project/regenie_pipeline/filtered_snps"
 mkdir -p "$OUTPUT_DIR"
 SNP_LIST="${OUTPUT_DIR}/chr${CHR}_mac${MIN_MAC}.snplist"
 

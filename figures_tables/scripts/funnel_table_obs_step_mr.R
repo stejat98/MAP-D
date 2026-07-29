@@ -7,20 +7,20 @@
 # MR instruments are not stratified by glycemic stage (single UKB split-sample MR);
 # counts in row (c) repeat the same gene-level MR result across UKB strata.
 
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 suppressPackageStartupMessages(library(dplyr))
 
-pewas_dir <- "/n/groups/patel/sivateja/UKB/PEWAS_results"
-mr_dir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
-out_csv <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Funnel_ReverseObs_STEP_MR_by_stratum_hallmark.csv"
+pewas_dir <- "/path/to/project/UKB/PEWAS_results"
+mr_dir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
+out_csv <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Funnel_ReverseObs_STEP_MR_by_stratum_hallmark.csv"
 
 traits <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
 trait_labels <- c("BMI", "HbA1c", "TG/HDL")
 strata <- c("non_T2D", "prediabetes", "T2D")
 strata_labels <- c("Normoglycemic", "Prediabetes", "T2D")
 
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
 rev_obs <- read.csv(file.path(pewas_dir, "Reverse_PEWAS_all_phenotypes_all_strata.csv"))
 prot_map <- step1 %>% dplyr::select(Exposure, code) %>% distinct()
 

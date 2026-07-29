@@ -11,7 +11,7 @@
 #   File: BMI_full_all_chr.regenie.gz
 # =============================================================================
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 
 library(TwoSampleMR)
 library(data.table)
@@ -22,7 +22,7 @@ cat("===========================================================================
 cat("  MR Analysis: DECODE cis-pQTLs for LEP -> BMI (UKB full)\n")
 cat("================================================================================\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 output_dir <- "results/twosampleMR/decode_lep_bmi"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
@@ -32,7 +32,7 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 # =============================================================================
 cat("Step 1: Loading DECODE LEP pQTL data (cis region)...\n")
 
-decode_file <- "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_8484_24_LEP_Leptin_10032022.txt.gz"
+decode_file <- "/path/to/shared_data/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_8484_24_LEP_Leptin_10032022.txt.gz"
 
 # LEP gene coordinates (from somascan_protein_map.tsv)
 lep_chr <- "chr7"

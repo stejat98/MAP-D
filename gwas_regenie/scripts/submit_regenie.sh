@@ -4,8 +4,8 @@
 
 set -e
 
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
-INPUT_BASE="/n/groups/patel/sivateja/regenie_pipeline/inputs"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
+INPUT_BASE="/path/to/project/regenie_pipeline/inputs"
 PHENO_LIST_FILE="${SCRIPT_DIR}/pheno_list.txt"
 
 echo "=========================================="
@@ -71,4 +71,4 @@ sbatch \
 echo ""
 echo "Job submitted!"
 echo "Monitor with: squeue -u $USER"
-echo "Check logs in: /n/groups/patel/sivateja/regenie_pipeline/slurm/"
+echo "Check logs in: /path/to/project/regenie_pipeline/slurm/"

@@ -8,9 +8,9 @@ echo "=========================================="
 echo "REGENIE Pipeline Test"
 echo "=========================================="
 
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
-INPUT_BASE="/n/groups/patel/sivateja/regenie_pipeline/inputs"
-TEST_OUTPUT_BASE="/n/scratch/users/s/st320/regenie_test"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
+INPUT_BASE="/path/to/project/regenie_pipeline/inputs"
+TEST_OUTPUT_BASE="/path/to/scratch/regenie_test"
 
 # Create test output directory
 mkdir -p "$TEST_OUTPUT_BASE"

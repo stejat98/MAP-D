@@ -14,4 +14,4 @@ module load gcc/14.2.0 R/4.5.2
 # export VARDECOMP_MAX_PROT_MISS=0.30
 # export VARDECOMP_NFOLDS=3
 
-Rscript /n/groups/patel/sivateja/regenie_pipeline/variance_decomposition_bmi.R
+Rscript /path/to/project/regenie_pipeline/variance_decomposition_bmi.R

@@ -10,7 +10,7 @@
 ##   VARDECOMP_MAX_PROT_MISS  — max missingness per protein, 0–1 (default 0.30); auto-relaxes if needed
 ##   VARDECOMP_NFOLDS         — glmnet CV folds (default 3)
 
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 
 library(glmnet)
 library(dplyr)
@@ -21,7 +21,7 @@ library(ggplot2)
 RUN_SEED <- 2026L
 set.seed(RUN_SEED)
 
-out_dir <- "/n/groups/patel/sivateja/regenie_pipeline"
+out_dir <- "/path/to/project/regenie_pipeline"
 setwd(out_dir)
 
 cv_folds <- suppressWarnings(as.integer(Sys.getenv("VARDECOMP_NFOLDS", "3")))
@@ -35,10 +35,10 @@ if (is.na(max_prot_miss_target) || max_prot_miss_target <= 0 || max_prot_miss_ta
 ## ── 1. Load data ──────────────────────────────────────────────────────────────
 
 cat("Loading data...\n")
-data <- readRDS("/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS")
+data <- readRDS("/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS")
 cat("  Raw dimensions:", dim(data), "\n")
 
-coding <- read.delim("/n/groups/patel/sivateja/UKB/PEWAS_results/coding143.tsv",
+coding <- read.delim("/path/to/project/UKB/PEWAS_results/coding143.tsv",
                      stringsAsFactors = FALSE)
 cat("  Coding entries:", nrow(coding), "\n")
 
@@ -72,8 +72,8 @@ olink <- olink %>% left_join(st3_slim, by = "gene_symbol")
 # SomaScan analyte universe for Olink overlap (7k manifest if available; else STEP trial union)
 load_or_build_somascan <- function(out_dir) {
   soma_path_7k <- file.path(out_dir, "inputs", "somascan_v41_7k_human.csv")
-  step1 <- "/n/groups/patel/sivateja/STEP1_merged_results.csv"
-  step2 <- "/n/groups/patel/sivateja/STEP2_merged_results.csv"
+  step1 <- "/path/to/project/STEP1_merged_results.csv"
+  step2 <- "/path/to/project/STEP2_merged_results.csv"
   if (file.exists(soma_path_7k)) {
     cat("  Using SomaScan manifest:", soma_path_7k, "\n")
     return(list(
@@ -85,7 +85,7 @@ load_or_build_somascan <- function(out_dir) {
   if (!file.exists(step1) || !file.exists(step2)) {
     stop(
       "Need either inputs/somascan_v41_7k_human.csv or both STEP1_merged_results.csv and ",
-      "STEP2_merged_results.csv under /n/groups/patel/sivateja/"
+      "STEP2_merged_results.csv under /path/to/project/"
     )
   }
   s1 <- read.csv(step1, stringsAsFactors = FALSE)

@@ -1,14 +1,14 @@
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
 
 # ---- Load STEP 1/2 trial data (Y-axis: treatment effect on protein) ----
-step1 = read.delim('/n/groups/patel/sivateja/STEP1_merged_results.csv', sep=',')
-step2 = read.delim('/n/groups/patel/sivateja/STEP2_merged_results.csv', sep=',')
+step1 = read.delim('/path/to/project/STEP1_merged_results.csv', sep=',')
+step2 = read.delim('/path/to/project/STEP2_merged_results.csv', sep=',')
 
 # ---- Load reverse observational PEWAS: BMI -> protein (normoglycemic) ----
-rev_obs <- read.csv('/n/groups/patel/sivateja/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv')
+rev_obs <- read.csv('/path/to/project/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv')
 rev_obs_bmi <- rev_obs %>% filter(Phenotype == "BMI", Stratum == "non_T2D")
 
 # Map protein_x.N to gene symbols using STEP1 mapping
@@ -20,7 +20,7 @@ rev_obs_bmi <- rev_obs_bmi %>%
 cat("Reverse observational BMI->protein (normoglycemic):", nrow(rev_obs_bmi), "proteins\n")
 
 # ---- Load bidirectional MR: reverse direction (BMI -> protein) ----
-bidir_mr = read.csv('/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_BMI_Full.csv')
+bidir_mr = read.csv('/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_BMI_Full.csv')
 bidir_mr$Rev_Beta <- as.numeric(bidir_mr$Rev..IVW.Beta)
 bidir_mr$Rev_P    <- as.numeric(bidir_mr$Rev..IVW.P.value)
 
@@ -196,5 +196,5 @@ p <- ggplot(plot_df, aes(x = Beta_obs_rev, y = ESTIMATE_STEP_MEAN, color = quadr
   ggtitle('Normoglycemic BMI Associations vs. Step 1 Results') +
   theme(legend.position = 'none')
 
-ggsave('/n/groups/patel/sivateja/validation_step1_points_BMI_concordant.pdf', plot = p, width = 10, height = 10)
-cat("\nPlot saved to /n/groups/patel/sivateja/validation_step1_points_BMI_concordant.pdf\n")
+ggsave('/path/to/project/validation_step1_points_BMI_concordant.pdf', plot = p, width = 10, height = 10)
+cat("\nPlot saved to /path/to/project/validation_step1_points_BMI_concordant.pdf\n")

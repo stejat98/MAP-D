@@ -18,7 +18,7 @@
 # computed in the separate combine step over the full protein set.
 # =============================================================================
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 suppressMessages(library(data.table))
 suppressMessages(library(ieugwasr))
 
@@ -30,10 +30,10 @@ N_CHUNKS <- as.integer(args[3])
 
 CLUMP_R2 <- 0.01
 CLUMP_KB <- 10000
-BFILE    <- "/n/groups/patel/IGLOO/LDref/EUR"
+BFILE    <- "/path/to/shared_data/LDref/EUR"
 PLINK    <- Sys.getenv("PLINK_BIN", "/n/app/plink/1.90b7.7_20241022/bin/plink")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 output_dir <- sprintf("results/twosampleMR/sensitivity_r2clump/%s", PHENO)
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -95,7 +95,7 @@ my_idx <- idx_all[chunk_assign == CHUNK_ID]
 cat(sprintf("Total proteins: %d | this chunk (%d/%d): %d proteins\n\n",
             n_prot, CHUNK_ID, N_CHUNKS, length(my_idx)))
 
-decode_dir <- "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp"
+decode_dir <- "/path/to/shared_data/DECODE/pQTL/final_somascan_smp"
 
 # =============================================================================
 # 3. Reverse MR per protein (identical estimation to the original script)

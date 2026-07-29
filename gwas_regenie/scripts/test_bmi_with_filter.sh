@@ -3,10 +3,10 @@
 #SBATCH -t 4:00:00
 #SBATCH --mem=50G
 #SBATCH -p medium
-#SBATCH -o /n/groups/patel/sivateja/regenie_pipeline/slurm/test_bmi_filter_%j.out
-#SBATCH -e /n/groups/patel/sivateja/regenie_pipeline/slurm/test_bmi_filter_%j.err
+#SBATCH -o /path/to/project/regenie_pipeline/slurm/test_bmi_filter_%j.out
+#SBATCH -e /path/to/project/regenie_pipeline/slurm/test_bmi_filter_%j.err
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=sivateja_tangirala@hms.harvard.edu
+#SBATCH --mail-user=your_email@example.com
 #SBATCH --job-name=regenie_test_bmi
 
 # Test REGENIE with BMI using the main pipeline script
@@ -17,7 +17,7 @@ echo "Testing REGENIE with BMI (using main pipeline script)"
 echo "Verifying filtered SNP list configuration"
 echo "=========================================="
 
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
 REGENIE_SCRIPT="${SCRIPT_DIR}/run_regenie_array.sh"
 
 # Test with full stratum first (largest sample, most likely to catch issues)
@@ -30,7 +30,7 @@ echo "Testing: ${STRATUM} - ${SAMPLE_TYPE} - ${PHENO_NAME}"
 echo ""
 
 # Verify filtered SNP list exists
-FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
+FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
 if [ ! -f "$FILTERED_SNP_LIST" ]; then
     echo "ERROR: Required filtered SNP list not found: $FILTERED_SNP_LIST"
     echo "  Run prefilter_snps.sh first"

@@ -2,7 +2,7 @@
 # Arguments: qtl_type (cis/trans), chunk_id, total_chunks
 
 # Set library path
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 
 # Parse command line arguments
 args <- commandArgs(trailingOnly = TRUE)
@@ -28,7 +28,7 @@ library(dplyr)
 library(data.table)
 
 # Set working directory
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 # Create output directory
 output_dir <- "results/twosampleMR/cis_trans_chunked"

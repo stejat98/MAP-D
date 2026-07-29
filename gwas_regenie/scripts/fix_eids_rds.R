@@ -2,8 +2,8 @@
 # Helper script to fix/re-save the proteomics EIDs RDS file
 # This may be needed if the file was created with a different R version
 
-INPUT_FILE <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS"
-OUTPUT_FILE <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas_fixed.RDS"
+INPUT_FILE <- "/path/to/project/olink_eids_for_proteins_gwas.RDS"
+OUTPUT_FILE <- "/path/to/project/olink_eids_for_proteins_gwas_fixed.RDS"
 
 cat("Attempting to fix RDS file...\n")
 cat("Input:", INPUT_FILE, "\n")

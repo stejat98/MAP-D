@@ -6,9 +6,9 @@
 
 set -e
 
-SCRATCH_DIR="/n/scratch/users/s/st320/regenie"
-RESULTS_DIR="/n/groups/patel/sivateja/regenie_pipeline/results"
-SCRIPTS_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
+SCRATCH_DIR="/path/to/scratch/regenie"
+RESULTS_DIR="/path/to/project/regenie_pipeline/results"
+SCRIPTS_DIR="/path/to/project/regenie_pipeline/scripts"
 
 # Hallmarks to process (excluding BMI and HbA1c which are already done)
 PHENOTYPES=("HDL" "LDL" "systolic_BP" "diastolic_BP" "TRIG_HDL_RATIO")

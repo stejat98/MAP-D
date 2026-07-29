@@ -4,7 +4,7 @@
 
 HALLMARKS=("BMI" "HbA1c" "TRIG_HDL_RATIO")
 
-PIPE="${REGENIE_PIPELINE_ROOT:-/n/groups/patel/sivateja/regenie_pipeline}"
+PIPE="${REGENIE_PIPELINE_ROOT:-/path/to/project/regenie_pipeline}"
 SCRIPT_DIR="${PIPE}/scripts"
 REGENIE_SCRIPT="${SCRIPT_DIR}/run_regenie_array.sh"
 

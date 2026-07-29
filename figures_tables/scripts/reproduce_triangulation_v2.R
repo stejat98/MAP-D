@@ -1,17 +1,17 @@
-.libPaths(c("/home/st320/R/x86_64-pc-linux-gnu-library/4.4",
-            "/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/home/R/x86_64-pc-linux-gnu-library/4.4",
+            "/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 
 cat("================================================================\n")
 cat("TRIANGULATION v2: BMI->STEP1, HbA1c->STEP2, TG/HDL->both\n")
 cat("================================================================\n\n")
 
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
-rev_obs <- read.csv("/n/groups/patel/sivateja/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
+rev_obs <- read.csv("/path/to/project/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
 prot_map <- step1 %>% dplyr::select(Exposure, code) %>% distinct()
 
-mr_dir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+mr_dir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 
 # trial_mode: "step1" = STEP1 only, "step2" = STEP2 only, "both" = average
 run_triangulation <- function(pheno, pheno_label, stratum, mr_file, step_subgroup, trial_mode) {

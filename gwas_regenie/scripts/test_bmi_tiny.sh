@@ -15,9 +15,9 @@ PHENO_NAME="BMI"
 CHR_TEST="22"
 
 # Paths
-INPUT_PATH="/n/groups/patel/sivateja/regenie_pipeline/inputs/${STRATUM}/${SAMPLE_TYPE}/${PHENO_NAME}"
-OUTPUT_ROOT="/n/scratch/users/s/st320/regenie_test"
-CONDA_ENV="/n/groups/patel/sivateja/.conda/envs/regenie_env"
+INPUT_PATH="/path/to/project/regenie_pipeline/inputs/${STRATUM}/${SAMPLE_TYPE}/${PHENO_NAME}"
+OUTPUT_ROOT="/path/to/scratch/regenie_test"
+CONDA_ENV="/path/to/project/.conda/envs/regenie_env"
 GENO_PATH="/n/no_backup2/patel/uk_biobank/ukb_genetics/22881/bgen_converted"
 
 # Output directories
@@ -105,10 +105,10 @@ else
 fi
 
 # Conda setup
-export HOME=/n/groups/patel/sivateja
+export HOME=/path/to/project
 export CONDA_NO_PLUGINS=true
-export CONDA_PKGS_DIRS=/n/groups/patel/sivateja/.conda/pkgs
-export CONDA_ENVS_PATH=/n/groups/patel/sivateja/.conda/envs
+export CONDA_PKGS_DIRS=/path/to/project/.conda/pkgs
+export CONDA_ENVS_PATH=/path/to/project/.conda/envs
 
 module load conda/miniforge3/24.11.3-0
 eval "$(conda shell.bash hook)"

@@ -8,7 +8,7 @@
 #   - Outcome: Protein levels (DECODE Iceland SomaScan pQTLs)
 # =============================================================================
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 library(data.table)
 
 cat("================================================================================\n")
@@ -17,7 +17,7 @@ cat("  Exposure: UKB BMI GWAS (full stratum)\n")
 cat("  Outcome:  DECODE Iceland pQTLs (no sample overlap)\n")
 cat("================================================================================\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 # =============================================================================
 # 1. Extract genome-wide significant BMI instruments from UKB GWAS
@@ -77,15 +77,15 @@ cat(sprintf("  All F > 10: %s\n\n", ifelse(all(bmi_instruments$F_stat > 10), "YE
 
 proteins <- list(
   LEP = list(
-    file = "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_8484_24_LEP_Leptin_10032022.txt.gz",
+    file = "/path/to/shared_data/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_8484_24_LEP_Leptin_10032022.txt.gz",
     name = "Leptin"
   ),
   LEPR = list(
-    file = "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_5400_52_LEPR_sLeptin_R_10032022.txt.gz",
+    file = "/path/to/shared_data/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_5400_52_LEPR_sLeptin_R_10032022.txt.gz",
     name = "Leptin Receptor"
   ),
   SHBG = list(
-    file = "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_4929_55_SHBG_SHBG_10032022.txt.gz",
+    file = "/path/to/shared_data/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_4929_55_SHBG_SHBG_10032022.txt.gz",
     name = "Sex Hormone-Binding Globulin"
   )
 )

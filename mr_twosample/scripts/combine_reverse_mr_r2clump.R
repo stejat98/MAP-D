@@ -4,9 +4,9 @@
 #
 # Usage: Rscript combine_reverse_mr_r2clump.R
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 suppressMessages(library(data.table))
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 orig_files <- c(
   BMI            = "results/twosampleMR/bidirectional_bmi_proteins/bidirectional_MR_BMI_all_proteins.csv",

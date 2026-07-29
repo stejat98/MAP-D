@@ -2,7 +2,7 @@
 # Submit REGENIE jobs for the protein GWAS in the Olink (proteomics) sample.
 # Full cohort only. Uses the same covariate approach as the hallmark GWAS.
 
-PIPE="${REGENIE_PIPELINE_ROOT:-/n/groups/patel/sivateja/regenie_pipeline}"
+PIPE="${REGENIE_PIPELINE_ROOT:-/path/to/project/regenie_pipeline}"
 SCRIPT_DIR="${PIPE}/scripts"
 REGENIE_SCRIPT="${SCRIPT_DIR}/run_regenie_array.sh"
 

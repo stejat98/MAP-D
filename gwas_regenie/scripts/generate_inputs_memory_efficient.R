@@ -7,10 +7,10 @@ suppressPackageStartupMessages({
 })
 
 # Configuration
-MAIN_RDS <- "/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
-PROTEOMICS_EIDS_RDS <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS"
-VALIDATED_PROTEINS_CSV <- "/n/groups/patel/sivateja/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
-OUTPUT_BASE <- "/n/groups/patel/sivateja/regenie_pipeline/inputs"
+MAIN_RDS <- "/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
+PROTEOMICS_EIDS_RDS <- "/path/to/project/olink_eids_for_proteins_gwas.RDS"
+VALIDATED_PROTEINS_CSV <- "/path/to/project/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
+OUTPUT_BASE <- "/path/to/project/regenie_pipeline/inputs"
 
 HALLMARK_TRAITS <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
 

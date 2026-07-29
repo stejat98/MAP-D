@@ -2,8 +2,8 @@
 # Fix duplicate individuals in existing REGENIE phenotype and covariate files
 # Keeps first occurrence of each duplicate individual
 
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
-INPUTS_DIR="/n/groups/patel/sivateja/regenie_pipeline/inputs"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
+INPUTS_DIR="/path/to/project/regenie_pipeline/inputs"
 
 echo "=========================================="
 echo "Fixing duplicate individuals in REGENIE input files"

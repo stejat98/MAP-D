@@ -11,8 +11,8 @@ PHENOTYPES="${1:-BMI HbA1c}"
 STRATA="${2:-full}"
 
 # Output directory (scratch for processing, then copy to permanent location)
-SCRATCH_ROOT="/n/scratch/users/s/st320/regenie"
-RESULTS_ROOT="/n/groups/patel/sivateja/regenie_pipeline/results"
+SCRATCH_ROOT="/path/to/scratch/regenie"
+RESULTS_ROOT="/path/to/project/regenie_pipeline/results"
 
 # Create results directory if it doesn't exist
 mkdir -p "$RESULTS_ROOT"

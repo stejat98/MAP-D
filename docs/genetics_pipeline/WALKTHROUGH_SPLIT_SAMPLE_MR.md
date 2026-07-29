@@ -30,7 +30,7 @@ hallmark traits (held-out sample) and ~50K for the proteins (Olink sample).
 ## 2. Pipeline Root
 
 ```
-/n/groups/patel/sivateja/regenie_pipeline/
+/path/to/project/regenie_pipeline/
 ```
 
 ---
@@ -42,16 +42,16 @@ hallmark traits (held-out sample) and ~50K for the proteins (Olink sample).
 **Script:** `scripts/generate_inputs.R`
 
 ```bash
-Rscript /n/groups/patel/sivateja/regenie_pipeline/scripts/generate_inputs.R
+Rscript /path/to/project/regenie_pipeline/scripts/generate_inputs.R
 ```
 
 This script:
 1. Loads the main UKB phenotype/covariate dataframe:
-   `/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS`
+   `/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS`
 2. Loads the Olink EID list:
-   `/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS`
+   `/path/to/project/olink_eids_for_proteins_gwas.RDS`
 3. Loads validated proteins:
-   `/n/groups/patel/sivateja/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv`
+   `/path/to/project/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv`
 4. **Splits** the sample:
    - Proteins: `eid %in% olink_eids_for_proteins_gwas`
    - Hallmarks: `eid %notin% olink_eids_for_proteins_gwas`
@@ -67,7 +67,7 @@ inputs/
 ### 3B. Run Preflight Checks
 
 ```bash
-Rscript /n/groups/patel/sivateja/regenie_pipeline/scripts/preflight_checks.R
+Rscript /path/to/project/regenie_pipeline/scripts/preflight_checks.R
 ```
 
 Validates that all files exist, sample sizes look right, and EIDs don't overlap between the two samples.
@@ -81,18 +81,18 @@ Validates that all files exist, sample sizes look right, and EIDs don't overlap 
 
 **Submit hallmark GWAS (BMI, HbA1c, TRIG_HDL_RATIO in held-out sample):**
 ```bash
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_hallmarks_full.sh
+bash /path/to/project/regenie_pipeline/scripts/submit_hallmarks_full.sh
 ```
 
 **Submit protein GWAS (Olink sample):**
 ```bash
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_proteins_full.sh
+bash /path/to/project/regenie_pipeline/scripts/submit_proteins_full.sh
 ```
 
 ### 3D. Combine Per-Chromosome Results
 
 ```bash
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/combine_regenie_results.sh
+bash /path/to/project/regenie_pipeline/scripts/combine_regenie_results.sh
 ```
 
 Concatenates chr1-22 into single gzipped files per phenotype/stratum.
@@ -123,7 +123,7 @@ From the UKB-PPP publication (Sun et al. 2023, Nature):
 ### DECODE Iceland pQTLs (external, no UKB overlap)
 
 ```
-/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/
+/path/to/shared_data/DECODE/pQTL/final_somascan_smp/
 ```
 Files named: `Proteomics_SMP_PC0_{seqid}_{GENE}_{ProteinName}_10032022.txt.gz`
 
@@ -148,7 +148,7 @@ UKB hallmark GWAS from the **held-out** (non-Olink) sample.
 
 ```bash
 # Run cis-pQTL forward MR in 8 parallel chunks
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/submit_cis_trans_chunked.sh
+bash /path/to/project/regenie_pipeline/scripts/submit_cis_trans_chunked.sh
 ```
 
 This calls `scripts/twosampleMR_cis_trans_chunked.R` with `qtl_type = "cis"`, which explicitly filters ST10 to `cis_trans == "cis"` before running MR.
@@ -218,7 +218,7 @@ Rscript scripts/reverse_mr_phenotype_to_all_proteins.R TRIG_HDL_RATIO
 1. Loads UKB hallmark GWAS (e.g., `results/GWAS/BMI/BMI_full_all_chr.regenie.gz`)
 2. Extracts GW-significant SNPs (LOG10P > 7.3, i.e. P < 5e-8), keeps rsID-named variants
 3. Distance-prunes at 500kb (keeping the most significant per window)
-4. For **each protein**, loads its DECODE pQTL file from `/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/`
+4. For **each protein**, loads its DECODE pQTL file from `/path/to/shared_data/DECODE/pQTL/final_somascan_smp/`
 5. Looks up the hallmark instruments' effects on protein levels in DECODE
 6. Harmonizes alleles and runs MR (Wald ratio / IVW / MR-Egger)
 7. Reports F-statistics for instrument strength
@@ -309,7 +309,7 @@ results/twosampleMR/bidirectional_decode_trig_hdl/
 ## 9. Quick Reference: Running Everything End-to-End
 
 ```bash
-cd /n/groups/patel/sivateja/regenie_pipeline
+cd /path/to/project/regenie_pipeline
 
 # --- GWAS ---
 
@@ -363,11 +363,11 @@ Rscript scripts/validation_concordance_all_phenotypes.R
 | Resource | Path | Description |
 |----------|------|-------------|
 | UKB-PPP pQTL supplement | `41586_2023_6592_MOESM3_ESM.xlsx` (sheet ST10) | Sun et al. 2023 pQTL catalog; filter `cis_trans == "cis"` |
-| DECODE Iceland pQTLs | `/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/` | Full GWAS per protein (SomaScan, ~35K Icelanders) |
+| DECODE Iceland pQTLs | `/path/to/shared_data/DECODE/pQTL/final_somascan_smp/` | Full GWAS per protein (SomaScan, ~35K Icelanders) |
 | UKB genotypes (non-imputed) | `/n/no_backup2/patel/uk_biobank/ukb_genetics/22881/` | REGENIE Step 1 |
 | UKB genotypes (imputed) | Same dir, `ukb_imp_chr*_v3.bgen` | REGENIE Step 2 |
 | Protein-DECODE mapping | `results/twosampleMR/bidirectional_bmi_proteins/protein_decode_mapping.csv` | Maps validated proteins to DECODE filenames |
-| Validated proteins | `/n/groups/patel/sivateja/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv` | Proteins passing Step 1 + Step 2 validation |
+| Validated proteins | `/path/to/project/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv` | Proteins passing Step 1 + Step 2 validation |
 
 ---
 
@@ -378,7 +378,7 @@ Rscript scripts/validation_concordance_all_phenotypes.R
 - `readxl` -- reading UKB-PPP Excel supplement
 - `dplyr`, `ggplot2`, `ggrepel`, `patchwork` -- data wrangling and figures
 
-Library path: `/n/groups/patel/sivateja/.R/library`
+Library path: `/path/to/project/.R/library`
 
 ---
 

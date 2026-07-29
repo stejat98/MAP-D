@@ -11,7 +11,7 @@
 # Usage: module load gcc/14.2.0 R/4.4.2 && Rscript merge_cis_pqtl_coloc.R
 
 # Define base paths
-base_path <- "/n/groups/patel/sivateja/regenie_pipeline"
+base_path <- "/path/to/project/regenie_pipeline"
 mr_path <- file.path(base_path, "results/twosampleMR/supplemental_tables")
 output_path <- file.path(base_path, "results/twosampleMR/supplemental_tables")
 

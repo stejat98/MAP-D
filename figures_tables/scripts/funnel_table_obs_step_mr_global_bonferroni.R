@@ -6,11 +6,11 @@
 # (b) STEP trial P < 0.05 (unchanged from funnel_table_obs_step_mr.R)
 # (c) Reverse MR: nominal Rev IVW P < 0.05
 
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 suppressPackageStartupMessages(library(dplyr))
 
-pewas_dir <- "/n/groups/patel/sivateja/UKB/PEWAS_results"
-mr_dir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+pewas_dir <- "/path/to/project/UKB/PEWAS_results"
+mr_dir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 out_csv <- file.path(
   mr_dir,
   "Table_Funnel_ReverseObs_STEP_MR_by_stratum_hallmark_global_Bonferroni.csv"
@@ -21,8 +21,8 @@ trait_labels <- c("BMI", "HbA1c", "TG/HDL")
 strata <- c("non_T2D", "prediabetes", "T2D")
 strata_labels <- c("Normoglycemic", "Prediabetes", "T2D")
 
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
 rev_obs <- read.csv(file.path(pewas_dir, "Reverse_PEWAS_all_phenotypes_all_strata.csv"))
 prot_map <- step1 %>% dplyr::select(Exposure, code) %>% distinct()
 

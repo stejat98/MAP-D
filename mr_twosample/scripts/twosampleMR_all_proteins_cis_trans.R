@@ -2,7 +2,7 @@
 # Separate analysis for cis vs trans pQTLs
 
 # Set library path
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 
 # Load required packages
 library(TwoSampleMR)
@@ -14,7 +14,7 @@ library(ggplot2)
 cat("=== TwoSampleMR: All Proteins Cis vs Trans Analysis ===\n\n")
 
 # Set working directory
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 # Create output directory
 output_dir <- "results/twosampleMR/cis_trans"

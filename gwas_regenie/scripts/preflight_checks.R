@@ -15,10 +15,10 @@ if (!requireNamespace("R.utils", quietly = TRUE)) {
 # Configuration
 # ============================================================================
 
-MAIN_RDS <- "/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
-PROTEOMICS_EIDS_RDS <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS"
-VALIDATED_PROTEINS_CSV <- "/n/groups/patel/sivateja/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
-INPUT_BASE <- "/n/groups/patel/sivateja/regenie_pipeline/inputs"
+MAIN_RDS <- "/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
+PROTEOMICS_EIDS_RDS <- "/path/to/project/olink_eids_for_proteins_gwas.RDS"
+VALIDATED_PROTEINS_CSV <- "/path/to/project/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
+INPUT_BASE <- "/path/to/project/regenie_pipeline/inputs"
 
 HALLMARK_TRAITS <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
 
@@ -238,7 +238,7 @@ cat(sprintf("\n   Total phenotypes with input files: %d\n", total_phenos))
 
 # 8. Check genotype files
 cat("\n8. Checking genotype files...\n")
-GWAS_PATH <- "/n/groups/patel/IGLOO/UKB/gwas"
+GWAS_PATH <- "/path/to/shared_data/UKB/gwas"
 STEP1_PGEN <- file.path(GWAS_PATH, "ukb_nonimputed_snps.pgen")
 STEP2_PGEN <- file.path(GWAS_PATH, "UKBallchr.pgen")
 

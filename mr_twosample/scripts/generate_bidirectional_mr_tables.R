@@ -11,7 +11,7 @@
 #   3. Cross-phenotype summary
 # =============================================================================
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 output_dir <- "results/twosampleMR/supplemental_tables"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 

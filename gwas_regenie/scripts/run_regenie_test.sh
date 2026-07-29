@@ -17,7 +17,7 @@ echo "  Phenotype: $PHENO_NAME"
 echo "  Input dir: $INPUT_DIR"
 
 # Paths
-CONDA_ENV="${CONDA_ENV:-/n/groups/patel/sivateja/.conda/envs/regenie_env}"
+CONDA_ENV="${CONDA_ENV:-/path/to/project/.conda/envs/regenie_env}"
 # IMPORTANT: Use ONLY genetic data from /n/no_backup2/patel/uk_biobank/ukb_genetics/22881
 # to ensure ID matching across all input files (phenotype, genotype, sample files)
 # BGEN files: ${GENO_PATH}/ukb_imp_chr*_v3.bgen (for Step 1)
@@ -48,10 +48,10 @@ N_INDIV=$(tail -n +2 "$PHENO_FILE" | wc -l)
 echo "  Number of individuals: $N_INDIV"
 
 # Conda setup (IMPORTANT: Set environment variables before activating conda)
-export HOME=/n/groups/patel/sivateja
+export HOME=/path/to/project
 export CONDA_NO_PLUGINS=true
-export CONDA_PKGS_DIRS=/n/groups/patel/sivateja/.conda/pkgs
-export CONDA_ENVS_PATH=/n/groups/patel/sivateja/.conda/envs
+export CONDA_PKGS_DIRS=/path/to/project/.conda/pkgs
+export CONDA_ENVS_PATH=/path/to/project/.conda/envs
 
 module load conda/miniforge3/24.11.3-0
 eval "$(conda shell.bash hook)"
@@ -69,12 +69,12 @@ awk 'BEGIN {print "ID_1 ID_2 missing sex"; print "0 0 0 D"} {print $1, $2, "0", 
 echo "  Created sample file from ${FAM_PATH}/ukb22.fam: $SAMPLE_FILE"
 
 # Use pre-filtered SNP list to avoid low-variance SNPs
-FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
+FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
 if [ ! -f "$FILTERED_SNP_LIST" ]; then
-    FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_mac50.snplist"
+    FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_mac50.snplist"
 fi
 if [ ! -f "$FILTERED_SNP_LIST" ]; then
-    FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_mac100.snplist"
+    FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_mac100.snplist"
 fi
 
 # Create exclude file for problematic low-variance SNPs that slip through

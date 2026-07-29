@@ -3,9 +3,9 @@
 
 # Configuration
 TOTAL_CHUNKS=8  # Split proteins into 8 chunks
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
-SLURM_DIR="/n/groups/patel/sivateja/regenie_pipeline/slurm"
-OUTPUT_DIR="/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/cis_trans_chunked"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
+SLURM_DIR="/path/to/project/regenie_pipeline/slurm"
+OUTPUT_DIR="/path/to/project/regenie_pipeline/results/twosampleMR/cis_trans_chunked"
 
 # Create directories
 mkdir -p "$SLURM_DIR"
@@ -38,9 +38,9 @@ for qtl_type in cis trans; do
 module load gcc/14.2.0
 module load R/4.4.2
 
-export R_LIBS_USER="/n/groups/patel/sivateja/.R/library"
+export R_LIBS_USER="/path/to/project/.R/library"
 
-cd /n/groups/patel/sivateja/regenie_pipeline
+cd /path/to/project/regenie_pipeline
 
 echo "Starting MR analysis: ${qtl_type} chunk ${chunk_id}/${TOTAL_CHUNKS}"
 echo "Date: \$(date)"

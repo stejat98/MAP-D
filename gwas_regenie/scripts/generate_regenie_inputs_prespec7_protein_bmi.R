@@ -20,13 +20,13 @@ suppressPackageStartupMessages({
   library(data.table)
 })
 
-PIPE <- Sys.getenv("REGENIE_PIPELINE", "/n/groups/patel/sivateja/regenie_pipeline")
+PIPE <- Sys.getenv("REGENIE_PIPELINE", "/path/to/project/regenie_pipeline")
 MAIN_RDS <- Sys.getenv(
   "MAPD_DATA_RDS",
-  "/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
+  "/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
 )
-PROTEOMICS_EIDS_RDS <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS"
-ADJ_RDATA <- "/home/st320/UKB_PEWAS/adjustments_survival_analysis.Rdata"
+PROTEOMICS_EIDS_RDS <- "/path/to/project/olink_eids_for_proteins_gwas.RDS"
+ADJ_RDATA <- "/path/to/home/UKB_PEWAS/adjustments_survival_analysis.Rdata"
 OUTPUT_BASE <- file.path(PIPE, "inputs")
 STRATUM_NAME <- "full"
 

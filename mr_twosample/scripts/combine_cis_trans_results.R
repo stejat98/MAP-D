@@ -1,12 +1,12 @@
 # Combine chunked MR results for cis/trans analysis
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 library(dplyr)
 library(data.table)
 
 cat("=== Combining Chunked MR Results ===\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 input_dir <- "results/twosampleMR/cis_trans_chunked"
 output_dir <- "results/twosampleMR/cis_trans"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)

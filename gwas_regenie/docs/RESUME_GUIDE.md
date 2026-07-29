@@ -5,18 +5,18 @@
 To resume the regenie test GWAS pipeline, simply run:
 
 ```bash
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/resume_regenie.sh
+bash /path/to/project/regenie_pipeline/scripts/resume_regenie.sh
 ```
 
 Or to skip confirmation prompt:
 
 ```bash
-bash /n/groups/patel/sivateja/regenie_pipeline/scripts/resume_regenie.sh --yes
+bash /path/to/project/regenie_pipeline/scripts/resume_regenie.sh --yes
 ```
 
 ## What the Resume Script Does
 
-1. **Checks completed jobs**: Scans the output directory (`/n/scratch/users/s/st320/regenie_test/`) to identify which phenotypes have completed Step 2 (final GWAS output)
+1. **Checks completed jobs**: Scans the output directory (`/path/to/scratch/regenie_test/`) to identify which phenotypes have completed Step 2 (final GWAS output)
 
 2. **Identifies remaining work**: Creates a list of phenotypes that are:
    - Not started
@@ -31,7 +31,7 @@ bash /n/groups/patel/sivateja/regenie_pipeline/scripts/resume_regenie.sh --yes
 
 Outputs follow the scratch directory convention:
 ```
-/n/scratch/users/s/st320/regenie_test/
+/path/to/scratch/regenie_test/
   <PHENOTYPE>/
     <STRATUM>/
       step1/          # Step 1 outputs (null model)
@@ -42,24 +42,24 @@ Outputs follow the scratch directory convention:
 
 Check job status:
 ```bash
-squeue -u st320
+squeue -u $USER
 ```
 
 Check logs:
 ```bash
-ls -lh /n/groups/patel/sivateja/regenie_pipeline/slurm/
+ls -lh /path/to/project/regenie_pipeline/slurm/
 ```
 
 ## Conda Environment Setup
 
 All scripts automatically set the required conda environment variables:
-- `HOME=/n/groups/patel/sivateja`
+- `HOME=/path/to/project`
 - `CONDA_NO_PLUGINS=true`
-- `CONDA_PKGS_DIRS=/n/groups/patel/sivateja/.conda/pkgs`
-- `CONDA_ENVS_PATH=/n/groups/patel/sivateja/.conda/envs`
+- `CONDA_PKGS_DIRS=/path/to/project/.conda/pkgs`
+- `CONDA_ENVS_PATH=/path/to/project/.conda/envs`
 
 And activate the regenie environment:
-- `/n/groups/patel/sivateja/.conda/envs/regenie_env`
+- `/path/to/project/.conda/envs/regenie_env`
 
 ## Files Created
 
@@ -71,12 +71,12 @@ And activate the regenie environment:
 
 If a job fails, check the log files:
 ```bash
-tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_<JOB_ID>_<ARRAY_ID>.out
-tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_<JOB_ID>_<ARRAY_ID>.err
+tail -f /path/to/project/regenie_pipeline/slurm/regenie_<JOB_ID>_<ARRAY_ID>.out
+tail -f /path/to/project/regenie_pipeline/slurm/regenie_<JOB_ID>_<ARRAY_ID>.err
 ```
 
 To manually check completion status:
 ```bash
 # Check if a specific phenotype is complete
-ls -lh /n/scratch/users/s/st320/regenie_test/<PHENOTYPE>/<STRATUM>/step2/regenie_step2_<PHENOTYPE>.regenie.gz
+ls -lh /path/to/scratch/regenie_test/<PHENOTYPE>/<STRATUM>/step2/regenie_step2_<PHENOTYPE>.regenie.gz
 ```

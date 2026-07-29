@@ -11,7 +11,7 @@
 #   File: BMI_full_all_chr.regenie.gz
 # =============================================================================
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 
 library(TwoSampleMR)
 library(data.table)
@@ -22,7 +22,7 @@ cat("===========================================================================
 cat("  MR Analysis: DECODE cis-pQTLs for LEPR -> BMI (UKB full)\n")
 cat("================================================================================\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 output_dir <- "results/twosampleMR/decode_lepr_bmi"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
@@ -32,7 +32,7 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 # =============================================================================
 cat("Step 1: Loading DECODE LEPR pQTL data (cis region)...\n")
 
-decode_file <- "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_5400_52_LEPR_sLeptin_R_10032022.txt.gz"
+decode_file <- "/path/to/shared_data/DECODE/pQTL/final_somascan_smp/Proteomics_SMP_PC0_5400_52_LEPR_sLeptin_R_10032022.txt.gz"
 
 # LEPR gene coordinates (hg38)
 lepr_chr <- "chr1"

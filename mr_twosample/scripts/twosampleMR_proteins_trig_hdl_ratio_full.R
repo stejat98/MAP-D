@@ -3,7 +3,7 @@
 # causal effects of Step 1 & 2 validated proteins on TRIG_HDL_RATIO
 
 # Set library path
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 
 # Load required packages
 library(TwoSampleMR)
@@ -14,7 +14,7 @@ library(data.table)
 cat("=== TwoSampleMR: Validated Proteins -> TRIG_HDL_RATIO (Full Strata) ===\n\n")
 
 # Set working directory
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 # -----------------------------------------------------------------------------
 # 1. Load validated proteins from merged_step1_2_ukb_T2D_coloc.csv

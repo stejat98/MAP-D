@@ -4,8 +4,8 @@
 #SBATCH --mem=16G
 #SBATCH -c 2
 #SBATCH -J rev_r2clump
-#SBATCH -o /n/groups/patel/sivateja/regenie_pipeline/slurm/rev_r2clump_%A_%a.out
-#SBATCH -e /n/groups/patel/sivateja/regenie_pipeline/slurm/rev_r2clump_%A_%a.err
+#SBATCH -o /path/to/project/regenie_pipeline/slurm/rev_r2clump_%A_%a.out
+#SBATCH -e /path/to/project/regenie_pipeline/slurm/rev_r2clump_%A_%a.err
 #SBATCH --array=1-32
 #
 # Sensitivity reverse-MR with r2<0.01 LD clumping.
@@ -13,7 +13,7 @@
 #
 set -euo pipefail
 
-PIPE=/n/groups/patel/sivateja/regenie_pipeline
+PIPE=/path/to/project/regenie_pipeline
 
 module load gcc/14.2.0 R/4.4.2 plink/1.90b7.7_20241022
 export PLINK_BIN=$(which plink)
@@ -36,5 +36,5 @@ fi
 
 echo "Task $TASK -> PHENO=$PHENO CHUNK=$CHUNK / $N_CHUNKS  (plink=$PLINK_BIN)"
 
-Rscript /n/groups/patel/sivateja/regenie_pipeline/scripts/reverse_mr_r2clump_sensitivity.R \
+Rscript /path/to/project/regenie_pipeline/scripts/reverse_mr_r2clump_sensitivity.R \
   "$PHENO" "$CHUNK" "$N_CHUNKS"

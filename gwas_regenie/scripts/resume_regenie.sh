@@ -4,9 +4,9 @@
 
 set -e
 
-SCRIPT_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
-INPUT_BASE="/n/groups/patel/sivateja/regenie_pipeline/inputs"
-OUTPUT_ROOT="/n/scratch/users/s/st320/regenie_test"
+SCRIPT_DIR="/path/to/project/regenie_pipeline/scripts"
+INPUT_BASE="/path/to/project/regenie_pipeline/inputs"
+OUTPUT_ROOT="/path/to/scratch/regenie_test"
 PHENO_LIST_FILE="${SCRIPT_DIR}/pheno_list.txt"
 PHENO_LIST_REMAINING="${SCRIPT_DIR}/pheno_list_remaining.txt"
 SLURM_LOG_DIR="${SCRIPT_DIR}/../slurm"

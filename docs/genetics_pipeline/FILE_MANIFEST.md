@@ -6,7 +6,7 @@ then curated for release: the published set covers the **full cohort** only,
 for **BMI**, **HbA1c**, and **TRIG_HDL_RATIO**. Scripts were edited to drop
 other traits and the glycemic strata, so some differ from their working copies.
 
-Paths below are relative to `/n/groups/patel/sivateja/regenie_pipeline/`.
+Paths below are relative to `/path/to/project/regenie_pipeline/`.
 
 ## Split-sample REGENIE GWAS
 

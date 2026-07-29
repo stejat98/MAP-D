@@ -5,8 +5,8 @@
 
 set -e
 
-SCRATCH_DIR="/n/scratch/users/s/st320/regenie"
-RESULTS_DIR="/n/groups/patel/sivateja/regenie_pipeline/results"
+SCRATCH_DIR="/path/to/scratch/regenie"
+RESULTS_DIR="/path/to/project/regenie_pipeline/results"
 
 PHENOTYPES=("HDL" "LDL" "systolic_BP" "diastolic_BP" "TRIG_HDL_RATIO")
 STRATUM="full"

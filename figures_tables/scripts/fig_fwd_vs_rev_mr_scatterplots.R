@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(ggplot2)
 library(dplyr)
 library(ggrepel)
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 outdir <- "results/twosampleMR/supplemental_tables"
 
 bmi <- read.csv("results/twosampleMR/bidirectional_bmi_proteins/bidirectional_MR_BMI_all_proteins.csv")

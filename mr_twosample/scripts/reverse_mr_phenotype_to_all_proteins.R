@@ -10,7 +10,7 @@
 # Outcome:  DECODE Iceland SomaScan pQTLs (no sample overlap)
 # =============================================================================
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 library(data.table)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -21,7 +21,7 @@ cat("===========================================================================
 cat(sprintf("  Reverse MR: %s -> All Proteins (DECODE pQTL outcomes)\n", PHENO))
 cat("================================================================================\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 output_dir <- sprintf("results/twosampleMR/bidirectional_%s_proteins", tolower(PHENO))
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -77,7 +77,7 @@ mapping_file <- "results/twosampleMR/bidirectional_bmi_proteins/protein_decode_m
 if (!file.exists(mapping_file)) {
   # Generate mapping on the fly
   cat("Generating protein-DECODE mapping...\n")
-  decode_dir <- "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp"
+  decode_dir <- "/path/to/shared_data/DECODE/pQTL/final_somascan_smp"
   decode_files <- list.files(decode_dir)
   
   get_gene <- function(f) {
@@ -118,7 +118,7 @@ if (has_forward) {
 
 cat(sprintf("Proteins to test: %d\n\n", nrow(mapping)))
 
-decode_dir <- "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp"
+decode_dir <- "/path/to/shared_data/DECODE/pQTL/final_somascan_smp"
 
 # =============================================================================
 # 3. Run reverse MR for each protein

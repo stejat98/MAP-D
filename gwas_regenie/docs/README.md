@@ -30,17 +30,17 @@ regenie_pipeline/
 ## Input Files
 
 1. **Main phenotype/covariate dataframe**:
-   `/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS`
+   `/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS`
 
 2. **Proteomics EID list**:
-   `/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS`
+   `/path/to/project/olink_eids_for_proteins_gwas.RDS`
 
 3. **Validated proteins list**:
-   `/n/groups/patel/sivateja/UKB/merged_validated_proteins_2.csv`
+   `/path/to/project/UKB/merged_validated_proteins_2.csv`
 
 4. **Genotype data**:
-   - Step 1: `/n/groups/patel/IGLOO/UKB/gwas/ukb_nonimputed_snps`
-   - Step 2: `/n/groups/patel/IGLOO/UKB/gwas/UKBallchr`
+   - Step 1: `/path/to/shared_data/UKB/gwas/ukb_nonimputed_snps`
+   - Step 2: `/path/to/shared_data/UKB/gwas/UKBallchr`
 
 ## Hallmark Traits
 
@@ -53,7 +53,7 @@ regenie_pipeline/
 ### Step 1: Preflight Checks
 
 ```bash
-Rscript /n/groups/patel/sivateja/regenie_pipeline/scripts/preflight_checks.R
+Rscript /path/to/project/regenie_pipeline/scripts/preflight_checks.R
 ```
 
 This validates input files, checks data structure, and reports sample sizes.
@@ -61,7 +61,7 @@ This validates input files, checks data structure, and reports sample sizes.
 ### Step 2: Generate Input Files
 
 ```bash
-Rscript /n/groups/patel/sivateja/regenie_pipeline/scripts/generate_inputs.R
+Rscript /path/to/project/regenie_pipeline/scripts/generate_inputs.R
 ```
 
 This script:
@@ -73,7 +73,7 @@ This script:
 ### Step 3: Submit GWAS Jobs
 
 ```bash
-/n/groups/patel/sivateja/regenie_pipeline/scripts/submit_regenie.sh
+/path/to/project/regenie_pipeline/scripts/submit_regenie.sh
 ```
 
 This script:
@@ -115,11 +115,11 @@ This ensures no overlap between protein and hallmark GWAS samples, supporting sp
 squeue -u $USER
 
 # View logs
-tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_*.out
+tail -f /path/to/project/regenie_pipeline/slurm/regenie_*.out
 ```
 
 ## Notes
 
-- All work is performed within `/n/groups/patel/sivateja/`
-- Reference implementation (read-only): `/n/groups/patel/shakson_ukb/UK_Biobank/BScripts/GWAS/REGENIE`
+- All work is performed within `/path/to/project/`
+- Reference implementation (read-only): `/path/to/collab_data/UK_Biobank/BScripts/GWAS/REGENIE`
 - The pipeline handles continuous traits by default; binary traits require `--bt` flag modification

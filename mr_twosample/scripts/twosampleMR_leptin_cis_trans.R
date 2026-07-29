@@ -2,7 +2,7 @@
 # Separate analysis for cis vs trans pQTLs with forest plots
 
 # Set library path
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 
 # Load required packages
 library(TwoSampleMR)
@@ -15,7 +15,7 @@ library(gridExtra)
 cat("=== TwoSampleMR: LEP (Leptin) Cis vs Trans Analysis ===\n\n")
 
 # Set working directory
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 
 # Create output directory
 output_dir <- "results/twosampleMR/leptin_cis_trans"

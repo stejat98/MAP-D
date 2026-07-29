@@ -12,13 +12,13 @@ suppressPackageStartupMessages({
 # ============================================================================
 
 # Input files
-MAIN_RDS <- "/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
-PROTEOMICS_EIDS_RDS <- "/n/groups/patel/sivateja/olink_eids_for_proteins_gwas.RDS"
-VALIDATED_PROTEINS_CSV <- "/n/groups/patel/sivateja/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
+MAIN_RDS <- "/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS"
+PROTEOMICS_EIDS_RDS <- "/path/to/project/olink_eids_for_proteins_gwas.RDS"
+VALIDATED_PROTEINS_CSV <- "/path/to/project/UKB/merged_validated_proteins_w_EntrezGeneSymbol_w_protein_var_code_UKB.csv"
 
 # Output base directory (overridable for sensitivity analyses with different covariates)
 OUTPUT_BASE <- Sys.getenv("REGENIE_INPUT_OUTPUT_BASE",
-                          "/n/groups/patel/sivateja/regenie_pipeline/inputs")
+                          "/path/to/project/regenie_pipeline/inputs")
 
 # Hallmark traits (non-proteomics / held-out REGENIE phenotypes)
 HALLMARK_TRAITS <- c("BMI", "HbA1c", "TRIG_HDL_RATIO")
@@ -104,7 +104,7 @@ if (!"GlycemicStatus" %in% colnames(main_df)) {
 # ============================================================================
 
 cat("\nLoading adjustments from adjustments_survival_analysis.Rdata...\n")
-adjustments_file <- "/home/st320/UKB_PEWAS/adjustments_survival_analysis.Rdata"
+adjustments_file <- "/path/to/home/UKB_PEWAS/adjustments_survival_analysis.Rdata"
 if (!file.exists(adjustments_file)) {
   stop(sprintf("ERROR: Adjustments file not found: %s", adjustments_file))
 }

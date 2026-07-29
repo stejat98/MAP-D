@@ -5,7 +5,7 @@
 # For: BMI, HbA1c, TRIG_HDL_RATIO
 # =============================================================================
 
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
@@ -14,12 +14,12 @@ library(patchwork)
 cat("=== Concordance Plots for All Phenotypes ===\n\n")
 
 # ---- Shared data ----
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
-rev_obs <- read.csv("/n/groups/patel/sivateja/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
+rev_obs <- read.csv("/path/to/project/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
 prot_map <- step1 %>% dplyr::select(Exposure, code) %>% distinct()
 
-outdir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+outdir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 
 # ---- Data layer (shared by single-panel and multi-panel exports) ----
 compute_concordance_data <- function(pheno, pheno_label, stratum, mr_file, step_subgroup, trial_mode = "both") {
@@ -243,19 +243,19 @@ make_concordance_plot <- function(pheno, pheno_label, stratum, mr_file, step_sub
 # BMI -> STEP 1 (obesity/non-T2D trial)
 bmi_res <- make_concordance_plot(
   "BMI", "Normoglycemic BMI", "non_T2D",
-  "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_BMI_Full.csv",
+  "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_BMI_Full.csv",
   "non T2D", trial_mode = "step1")
 
 # HbA1c -> STEP 2 (T2D trial)
 hba1c_res <- make_concordance_plot(
   "HbA1c", "T2D HbA1c", "non_T2D",
-  "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_HbA1c_Full.csv",
+  "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_HbA1c_Full.csv",
   "non T2D", trial_mode = "step2")
 
 # TG/HDL -> both trials (no single trial specifically targets dyslipidemia)
 trig_res <- make_concordance_plot(
   "TRIG_HDL_RATIO", "TG/HDL-C Ratio", "non_T2D",
-  "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_TRIG_HDL_RATIO_Full.csv",
+  "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_Bidirectional_MR_TRIG_HDL_RATIO_Full.csv",
   "non T2D", trial_mode = "both")
 
 # ---- Combined vertical figure: BMI (A) + HbA1c (B), separate PDF for manuscript ----

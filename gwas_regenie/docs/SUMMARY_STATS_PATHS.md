@@ -6,7 +6,7 @@ The per-chromosome results have been combined into single files following UK Bio
 
 ### Combined Files (All Chromosomes)
 
-**Location:** `/n/groups/patel/sivateja/regenie_pipeline/results/`
+**Location:** `/path/to/project/regenie_pipeline/results/`
 
 | Phenotype | File Path | Variants | Size | Sample Size (N) |
 |-----------|-----------|----------|------|----------------|
@@ -23,13 +23,13 @@ The per-chromosome results have been combined into single files following UK Bio
 **Usage:**
 ```bash
 # View first 20 lines
-zcat /n/groups/patel/sivateja/regenie_pipeline/results/BMI_full_all_chr.regenie.gz | head -20
+zcat /path/to/project/regenie_pipeline/results/BMI_full_all_chr.regenie.gz | head -20
 
 # Search for specific variant
-zcat /n/groups/patel/sivateja/regenie_pipeline/results/BMI_full_all_chr.regenie.gz | grep -w 'rs12345'
+zcat /path/to/project/regenie_pipeline/results/BMI_full_all_chr.regenie.gz | grep -w 'rs12345'
 
 # Count variants
-zcat /n/groups/patel/sivateja/regenie_pipeline/results/BMI_full_all_chr.regenie.gz | tail -n +2 | wc -l
+zcat /path/to/project/regenie_pipeline/results/BMI_full_all_chr.regenie.gz | tail -n +2 | wc -l
 ```
 
 ---
@@ -38,24 +38,24 @@ zcat /n/groups/patel/sivateja/regenie_pipeline/results/BMI_full_all_chr.regenie.
 
 If you need access to individual chromosome files, they are located in the scratch directory:
 
-**Location:** `/n/scratch/users/s/st320/regenie/`
+**Location:** `/path/to/scratch/regenie/`
 
 ### BMI - Full
-- **Step 1 (null model):** `/n/scratch/users/s/st320/regenie/BMI/full/step1/`
-- **Step 2 (associations):** `/n/scratch/users/s/st320/regenie/BMI/full/step2/`
+- **Step 1 (null model):** `/path/to/scratch/regenie/BMI/full/step1/`
+- **Step 2 (associations):** `/path/to/scratch/regenie/BMI/full/step2/`
   - Files: `regenie_step2_BMI_chr{1..22}_BMI.regenie` (22 files)
 
 ### HbA1c - Full
-- **Step 1 (null model):** `/n/scratch/users/s/st320/regenie/HbA1c/full/step1/`
-- **Step 2 (associations):** `/n/scratch/users/s/st320/regenie/HbA1c/full/step2/`
+- **Step 1 (null model):** `/path/to/scratch/regenie/HbA1c/full/step1/`
+- **Step 2 (associations):** `/path/to/scratch/regenie/HbA1c/full/step2/`
   - Files: `regenie_step2_HbA1c_chr{1..22}_HbA1c.regenie` (22 files)
 
 ### TRIG_HDL_RATIO - Full
-- **Step 1 (null model):** `/n/scratch/users/s/st320/regenie/TRIG_HDL_RATIO/full/step1/`
-- **Step 2 (associations):** `/n/scratch/users/s/st320/regenie/TRIG_HDL_RATIO/full/step2/`
+- **Step 1 (null model):** `/path/to/scratch/regenie/TRIG_HDL_RATIO/full/step1/`
+- **Step 2 (associations):** `/path/to/scratch/regenie/TRIG_HDL_RATIO/full/step2/`
   - Files: `regenie_step2_TRIG_HDL_RATIO_chr{1..22}_TRIG_HDL_RATIO.regenie` (22 files)
 
-**Note:** Scratch directory files may be purged after a period of inactivity. The combined files in `/n/groups/patel/sivateja/regenie_pipeline/results/` are the permanent location.
+**Note:** Scratch directory files may be purged after a period of inactivity. The combined files in `/path/to/project/regenie_pipeline/results/` are the permanent location.
 
 ---
 
@@ -74,16 +74,16 @@ If you need access to individual chromosome files, they are located in the scrat
 
 The combination was performed using:
 ```bash
-/n/groups/patel/sivateja/regenie_pipeline/scripts/combine_regenie_results.sh
+/path/to/project/regenie_pipeline/scripts/combine_regenie_results.sh
 ```
 
 To re-run combination (if needed):
 ```bash
 # Combine all hallmark results
-/n/groups/patel/sivateja/regenie_pipeline/scripts/combine_regenie_results.sh
+/path/to/project/regenie_pipeline/scripts/combine_regenie_results.sh
 
 # Combine a specific phenotype
-/n/groups/patel/sivateja/regenie_pipeline/scripts/combine_regenie_results.sh BMI full
+/path/to/project/regenie_pipeline/scripts/combine_regenie_results.sh BMI full
 ```
 
 ---
@@ -96,7 +96,7 @@ The combined files follow standard UK Biobank GWAS practices:
 2. **Sorted:** By chromosome (numeric) and genomic position (numeric)
 3. **Compressed:** gzip compression for storage efficiency
 4. **Standard format:** REGENIE output format with standard columns
-5. **Permanent location:** Stored in `/n/groups/patel/sivateja/regenie_pipeline/results/` (not scratch)
+5. **Permanent location:** Stored in `/path/to/project/regenie_pipeline/results/` (not scratch)
 
 This matches the approach used by:
 - Neale Lab UK Biobank GWAS (https://www.nealelab.is/uk-biobank)

@@ -1,5 +1,5 @@
-.libPaths(c("/home/st320/R/x86_64-pc-linux-gnu-library/4.4",
-            "/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/home/R/x86_64-pc-linux-gnu-library/4.4",
+            "/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 
 cat("================================================================\n")
@@ -7,19 +7,19 @@ cat("REPRODUCING TRIANGULATION NUMBERS - FULL AUDIT TRAIL\n")
 cat("================================================================\n\n")
 
 cat("INPUT FILES:\n")
-cat("  1. STEP 1 trial:    /n/groups/patel/sivateja/STEP1_merged_results.csv\n")
-cat("  2. STEP 2 trial:    /n/groups/patel/sivateja/STEP2_merged_results.csv\n")
-cat("  3. Reverse obs:     /n/groups/patel/sivateja/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv\n")
+cat("  1. STEP 1 trial:    /path/to/project/STEP1_merged_results.csv\n")
+cat("  2. STEP 2 trial:    /path/to/project/STEP2_merged_results.csv\n")
+cat("  3. Reverse obs:     /path/to/project/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv\n")
 cat("  4. Bidir MR (BMI):  .../Table_Bidirectional_MR_BMI_Full.csv\n")
 cat("  5. Bidir MR (HbA1c):.../Table_Bidirectional_MR_HbA1c_Full.csv\n")
 cat("  6. Bidir MR (TG/HDL):.../Table_Bidirectional_MR_TRIG_HDL_RATIO_Full.csv\n\n")
 
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
-rev_obs <- read.csv("/n/groups/patel/sivateja/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
+rev_obs <- read.csv("/path/to/project/UKB/PEWAS_results/Reverse_PEWAS_all_phenotypes_all_strata.csv")
 prot_map <- step1 %>% dplyr::select(Exposure, code) %>% distinct()
 
-mr_dir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+mr_dir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 
 cat("Raw table sizes:\n")
 cat(sprintf("  STEP1: %d rows x %d cols\n", nrow(step1), ncol(step1)))

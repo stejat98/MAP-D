@@ -1,15 +1,15 @@
 #!/usr/bin/env Rscript
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
 
 cat("=== Forward Obs vs STEP Concordance Figures (Updated Labels) ===\n")
 
-outdir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+outdir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
 
 step1val_ukb <- step1 %>%
   dplyr::select(Phenotype, Subgroup, EntrezGeneID, name, estimate, Bonferroni, Exposure, code) %>%

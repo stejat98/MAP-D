@@ -1,13 +1,13 @@
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
 
-step1 = read.delim('/n/groups/patel/sivateja/STEP1_merged_results.csv', sep=',')
-step2 = read.delim('/n/groups/patel/sivateja/STEP2_merged_results.csv', sep=',')
+step1 = read.delim('/path/to/project/STEP1_merged_results.csv', sep=',')
+step2 = read.delim('/path/to/project/STEP2_merged_results.csv', sep=',')
 
 # Load cis-MR results for BMI
-cis_mr = read.csv('/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_MR_Cis_pQTL_BMI_Full_merged_filtered.csv')
+cis_mr = read.csv('/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables/Table_MR_Cis_pQTL_BMI_Full_merged_filtered.csv')
 # Get nominally significant (p < 0.05) cis-MR hit protein names for BMI, non T2D
 cis_mr_hits <- cis_mr %>%
   filter(Cis_pQTL_Plt0.05 == "Yes", Phenotype == "BMI", Subgroup == "non T2D") %>%
@@ -91,5 +91,5 @@ p <- ggplot(plot_data, aes(x = Estimate_UKB, y = ESTIMATE_STEP_MEAN, color = qua
   ggtitle('Normoglycemic BMI Associations vs. Step 1 Results') +
   theme(legend.position = 'none')
 
-ggsave('/n/groups/patel/sivateja/validation_step1_points_BMI.pdf', plot = p, width = 8, height = 8)
-cat("\nPlot saved to /n/groups/patel/sivateja/validation_step1_points_BMI.pdf\n")
+ggsave('/path/to/project/validation_step1_points_BMI.pdf', plot = p, width = 8, height = 8)
+cat("\nPlot saved to /path/to/project/validation_step1_points_BMI.pdf\n")

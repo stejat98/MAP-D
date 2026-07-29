@@ -6,14 +6,14 @@
 # Outcome:  DECODE Iceland SomaScan pQTLs (no sample overlap)
 # =============================================================================
 
-.libPaths("/n/groups/patel/sivateja/.R/library")
+.libPaths("/path/to/project/.R/library")
 library(data.table)
 
 cat("================================================================================\n")
 cat("  Reverse MR: BMI -> All Proteins (DECODE pQTL outcomes)\n")
 cat("================================================================================\n\n")
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 output_dir <- "results/twosampleMR/bidirectional_bmi_proteins"
 
 # =============================================================================
@@ -59,7 +59,7 @@ writeLines(snp_list, tmp_snp_file)
 mapping <- read.csv(file.path(output_dir, "protein_decode_mapping.csv"))
 cat(sprintf("Proteins to test: %d\n\n", nrow(mapping)))
 
-decode_dir <- "/n/groups/patel/IGLOO/DECODE/pQTL/final_somascan_smp"
+decode_dir <- "/path/to/shared_data/DECODE/pQTL/final_somascan_smp"
 
 # =============================================================================
 # 3. Run reverse MR for each protein

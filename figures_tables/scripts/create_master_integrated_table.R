@@ -9,16 +9,16 @@
 #   - Colocalization PP.H4
 # =============================================================================
 
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 
-setwd("/n/groups/patel/sivateja/regenie_pipeline")
+setwd("/path/to/project/regenie_pipeline")
 outdir <- "results/twosampleMR/supplemental_tables"
 
 cat("=== Building Master Integrated Table ===\n\n")
 
 # ---- Protein mapping (protein_x.N -> gene symbol) ----
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
 prot_map <- step1 %>%
   dplyr::select(Exposure, code) %>%
   distinct() %>%
@@ -38,7 +38,7 @@ for (pi in seq_along(phenotypes)) {
   cat(sprintf("\n--- Processing %s ---\n", pheno))
 
   # ---- 1. Forward observational PEWAS ----
-  fwd_obs_file <- sprintf("/n/groups/patel/sivateja/UKB/PEWAS_results/%s_Linear_regression_proteomic_lm_results_non_T2D_adj_fasting_time.RDS", pheno)
+  fwd_obs_file <- sprintf("/path/to/project/UKB/PEWAS_results/%s_Linear_regression_proteomic_lm_results_non_T2D_adj_fasting_time.RDS", pheno)
   if (file.exists(fwd_obs_file)) {
     fwd_obs <- readRDS(fwd_obs_file)
     fwd_obs <- fwd_obs %>%
@@ -53,7 +53,7 @@ for (pi in seq_along(phenotypes)) {
   }
 
   # ---- 2. Reverse observational PEWAS ----
-  rev_obs_file <- sprintf("/n/groups/patel/sivateja/UKB/PEWAS_results/Reverse_%s_Linear_regression_proteomic_lm_results_non_T2D_adj_fasting_time.RDS", pheno)
+  rev_obs_file <- sprintf("/path/to/project/UKB/PEWAS_results/Reverse_%s_Linear_regression_proteomic_lm_results_non_T2D_adj_fasting_time.RDS", pheno)
   if (file.exists(rev_obs_file)) {
     rev_obs <- readRDS(rev_obs_file)
     rev_obs <- rev_obs %>%
@@ -97,7 +97,7 @@ for (pi in seq_along(phenotypes)) {
     group_by(code) %>% arrange(Pval_STEP1) %>% slice_head(n = 1) %>% ungroup() %>%
     rename(Gene = code)
 
-  step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
+  step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
   step2_pheno <- step2 %>%
     filter(Phenotype == pheno, Subgroup == "non T2D") %>%
     dplyr::select(code, Estimate_STEP2 = effect_size, Pval_STEP2 = pvalue) %>%

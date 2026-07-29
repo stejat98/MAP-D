@@ -8,7 +8,7 @@
 # closer to the cis-MR causal estimate (+0.12).
 # ============================================================================
 
-.libPaths(c("/n/groups/patel/sivateja/.R/library", "/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/.R/library", "/path/to/project/R_libs", .libPaths()))
 suppressPackageStartupMessages(library(data.table))
 
 cat("================================================================\n")
@@ -17,7 +17,7 @@ cat("================================================================\n\n")
 
 # Load data
 cat("Loading main dataframe...\n")
-main_df <- readRDS("/n/groups/patel/sivateja/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS")
+main_df <- readRDS("/path/to/project/UKB/PEWAS_results/data_plus_GLP_complications_glycemic_status_HbA1c_adjusted.RDS")
 cat(sprintf("  Loaded: %d rows, %d columns\n", nrow(main_df), ncol(main_df)))
 
 # Check columns for LEPR, LEP, BMI

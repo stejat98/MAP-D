@@ -1,15 +1,15 @@
 #!/usr/bin/env Rscript
-.libPaths(c("/n/groups/patel/sivateja/R_libs", .libPaths()))
+.libPaths(c("/path/to/project/R_libs", .libPaths()))
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
 
 cat("=== HbA1c Forward Concordance: Forward Obs + Forward MR vs STEP ===\n")
 
-outdir <- "/n/groups/patel/sivateja/regenie_pipeline/results/twosampleMR/supplemental_tables"
+outdir <- "/path/to/project/regenie_pipeline/results/twosampleMR/supplemental_tables"
 
-step1 <- read.csv("/n/groups/patel/sivateja/STEP1_merged_results.csv")
-step2 <- read.csv("/n/groups/patel/sivateja/STEP2_merged_results.csv")
+step1 <- read.csv("/path/to/project/STEP1_merged_results.csv")
+step2 <- read.csv("/path/to/project/STEP2_merged_results.csv")
 prot_map <- step1 %>% dplyr::select(Exposure, code) %>% distinct()
 
 bidir <- read.csv(file.path(outdir, "Table_Bidirectional_MR_HbA1c_Full.csv"), check.names = FALSE)

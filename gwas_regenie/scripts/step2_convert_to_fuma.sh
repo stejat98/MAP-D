@@ -5,8 +5,8 @@
 
 set -e
 
-RESULTS_DIR="/n/groups/patel/sivateja/regenie_pipeline/results"
-SCRIPTS_DIR="/n/groups/patel/sivateja/regenie_pipeline/scripts"
+RESULTS_DIR="/path/to/project/regenie_pipeline/results"
+SCRIPTS_DIR="/path/to/project/regenie_pipeline/scripts"
 
 PHENOTYPES=("HDL" "LDL" "systolic_BP" "diastolic_BP" "TRIG_HDL_RATIO")
 STRATUM="full"

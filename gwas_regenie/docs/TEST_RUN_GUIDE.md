@@ -8,8 +8,8 @@
    squeue -j 24020857
    
    # Check if input files were created
-   ls /n/groups/patel/sivateja/regenie_pipeline/inputs/full/proteins_only/
-   ls /n/groups/patel/sivateja/regenie_pipeline/inputs/full/hallmarks_heldout/
+   ls /path/to/project/regenie_pipeline/inputs/full/proteins_only/
+   ls /path/to/project/regenie_pipeline/inputs/full/hallmarks_heldout/
    ```
 
    You should see directories for at least one protein and one hallmark.
@@ -19,7 +19,7 @@
 ## Step 1: Check Input Files Exist
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 
 # Check proteins
 ls regenie_pipeline/inputs/full/proteins_only/ | head -5
@@ -41,18 +41,18 @@ ls regenie_pipeline/inputs/full/proteins_only/*/covar.txt | head -1
 The test script runs REGENIE, so it needs to run on a compute node. Create a SLURM script:
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 cat > regenie_pipeline/scripts/run_test_regenie.sh << 'EOF'
 #!/bin/bash
 #SBATCH -c 8
 #SBATCH -t 2:00:00
 #SBATCH --mem=50G
 #SBATCH -p short
-#SBATCH -o /n/groups/patel/sivateja/regenie_pipeline/slurm/test_regenie_%j.out
+#SBATCH -o /path/to/project/regenie_pipeline/slurm/test_regenie_%j.out
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=sivateja_tangirala@hms.harvard.edu
+#SBATCH --mail-user=your_email@example.com
 
-cd /n/groups/patel/sivateja
+cd /path/to/project
 bash regenie_pipeline/scripts/test_regenie.sh
 EOF
 
@@ -78,7 +78,7 @@ sbatch regenie_pipeline/scripts/run_test_regenie.sh
 squeue -j <JOB_ID>
 
 # Watch the log file (replace <JOB_ID> with actual job ID)
-tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/test_regenie_<JOB_ID>.out
+tail -f /path/to/project/regenie_pipeline/slurm/test_regenie_<JOB_ID>.out
 ```
 
 **What to watch for**:
@@ -96,7 +96,7 @@ tail -f /n/groups/patel/sivateja/regenie_pipeline/slurm/test_regenie_<JOB_ID>.ou
 Once the job completes, check the outputs:
 
 ```bash
-cd /n/groups/patel/sivateja
+cd /path/to/project
 
 # Check test output directory structure
 ls -R regenie_pipeline/test_results/
@@ -159,8 +159,8 @@ grep -i error regenie_pipeline/test_results/step2/*/*/*.log
 ### Error: "File not found" for pgen files
 - **Solution**: Verify genotype file paths exist:
   ```bash
-  ls /n/groups/patel/IGLOO/UKB/gwas/ukb_nonimputed_snps.pgen*
-  ls /n/groups/patel/IGLOO/UKB/gwas/UKBallchr.pgen*
+  ls /path/to/shared_data/UKB/gwas/ukb_nonimputed_snps.pgen*
+  ls /path/to/shared_data/UKB/gwas/UKBallchr.pgen*
   ```
 
 ### Test runs but produces no output

@@ -7,10 +7,10 @@
 #   - Full cohort: 10-00:00:00 (long partition, ~400K individuals)
 #   - Full: 20-00:00:00 (long partition, ~418K individuals)
 # These limits account for sample size scaling and fairshare optimization
-#SBATCH -o /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_%A_%a.out
-#SBATCH -e /n/groups/patel/sivateja/regenie_pipeline/slurm/regenie_%A_%a.err
+#SBATCH -o /path/to/project/regenie_pipeline/slurm/regenie_%A_%a.out
+#SBATCH -e /path/to/project/regenie_pipeline/slurm/regenie_%A_%a.err
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=sivateja_tangirala@hms.harvard.edu
+#SBATCH --mail-user=your_email@example.com
 
 # REGENIE GWAS array job
 # Runs Step 1 (null model) and Step 2 (association testing) for one phenotype
@@ -18,7 +18,7 @@
 # Parse command line arguments or use SLURM_ARRAY_TASK_ID
 if [ -z "$1" ]; then
     # Get phenotype info from array task ID
-    PHENO_LIST_FILE="${PHENO_LIST_FILE:-/n/groups/patel/sivateja/regenie_pipeline/scripts/pheno_list_hallmarks.txt}"
+    PHENO_LIST_FILE="${PHENO_LIST_FILE:-/path/to/project/regenie_pipeline/scripts/pheno_list_hallmarks.txt}"
     if [ ! -f "$PHENO_LIST_FILE" ]; then
         echo "ERROR: Phenotype list file not found: $PHENO_LIST_FILE"
         exit 1
@@ -43,7 +43,7 @@ echo "Array task ID: ${SLURM_ARRAY_TASK_ID:-N/A}"
 echo "=========================================="
 
 # Paths
-CONDA_ENV="${CONDA_ENV:-/n/groups/patel/sivateja/.conda/envs/regenie_env}"
+CONDA_ENV="${CONDA_ENV:-/path/to/project/.conda/envs/regenie_env}"
 # IMPORTANT: Use ONLY genetic data from /n/no_backup2/patel/uk_biobank/ukb_genetics/22881
 # to ensure ID matching across all input files (phenotype, genotype, sample files)
 # BGEN files: ${GENO_PATH}/ukb_imp_chr*_v3.bgen (for Step 1)
@@ -51,9 +51,9 @@ CONDA_ENV="${CONDA_ENV:-/n/groups/patel/sivateja/.conda/envs/regenie_env}"
 GENO_PATH="/n/no_backup2/patel/uk_biobank/ukb_genetics/22881"
 FAM_PATH="${GENO_PATH}/bgen_converted"
 # Optional override: separate input trees (e.g. egfr_pwas/inputs) without moving shared inputs
-REGENIE_INPUT_ROOT="${REGENIE_INPUT_ROOT:-/n/groups/patel/sivateja/regenie_pipeline/inputs}"
+REGENIE_INPUT_ROOT="${REGENIE_INPUT_ROOT:-/path/to/project/regenie_pipeline/inputs}"
 INPUT_PATH="${REGENIE_INPUT_ROOT}/${STRATUM}/${SAMPLE_TYPE}/${PHENO_NAME}"
-OUTPUT_ROOT="${REGENIE_OUTPUT_ROOT:-/n/scratch/users/s/st320/regenie}"
+OUTPUT_ROOT="${REGENIE_OUTPUT_ROOT:-/path/to/scratch/regenie}"
 
 # Per-phenotype output dirs & prefixes (using scratch convention)
 OUTDIR_STEP1="${OUTPUT_ROOT}/${PHENO_NAME}/${STRATUM}/step1"
@@ -83,10 +83,10 @@ if [ -f /etc/profile.d/modules.sh ]; then
 fi
 
 # Conda setup (IMPORTANT: Set environment variables before activating conda)
-export HOME=/n/groups/patel/sivateja
+export HOME=/path/to/project
 export CONDA_NO_PLUGINS=true
-export CONDA_PKGS_DIRS=/n/groups/patel/sivateja/.conda/pkgs
-export CONDA_ENVS_PATH=/n/groups/patel/sivateja/.conda/envs
+export CONDA_PKGS_DIRS=/path/to/project/.conda/pkgs
+export CONDA_ENVS_PATH=/path/to/project/.conda/envs
 
 module load conda/miniforge3/24.11.3-0
 eval "$(conda shell.bash hook)"
@@ -124,13 +124,13 @@ if [ $STEP1_COMPLETE -eq 0 ]; then
     # Use pre-filtered SNP list to avoid low-variance SNPs (per REGENIE recommendations)
     # Use MAF-based filtering for consistency across different sample sizes
     # Priority: MAF0.001 > MAC50 > MAC100 (most conservative first)
-    FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
+    FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_maf0.001.snplist"
     # Fallback to MAC-based filters if MAF doesn't exist
     if [ ! -f "$FILTERED_SNP_LIST" ]; then
-        FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_mac50.snplist"
+        FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_mac50.snplist"
     fi
     if [ ! -f "$FILTERED_SNP_LIST" ]; then
-        FILTERED_SNP_LIST="/n/groups/patel/sivateja/regenie_pipeline/filtered_snps/chr22_mac100.snplist"
+        FILTERED_SNP_LIST="/path/to/project/regenie_pipeline/filtered_snps/chr22_mac100.snplist"
     fi
     
     # Create exclude file for problematic low-variance SNPs that slip through
