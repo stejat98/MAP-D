@@ -269,8 +269,8 @@ ui <- page_navbar(
           downloadButton("dl_gtex", "GTEx tissue enrichment", class = "btn-primary"))),
       card(card_header("Resources & citation"),
         card_body(
-          p(strong("Live atlas: "), a("stejatshiny.shinyapps.io/mapd_app",
-              href = "https://stejatshiny.shinyapps.io/mapd_app/", target = "_blank")),
+          p(strong("Live atlas: "), a("stejat98-map-d.share.connect.posit.cloud",
+              href = "https://stejat98-map-d.share.connect.posit.cloud/", target = "_blank")),
           p(strong("Summary statistics: "), a("figshare (MAP-D)",
               href = "https://doi.org/10.6084/m9.figshare.30007306.v1", target = "_blank")),
           p(strong("GWAS summary statistics: "), a("figshare (BMI/HbA1c/TG-HDL)",
