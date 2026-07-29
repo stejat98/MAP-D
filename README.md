@@ -1,11 +1,11 @@
-# MAP-D: Metabolic Atlas of Progression to Diabetes
+# MAP-D: Metabolic Atlas of the Proteome in Diabetes
 
 [![R](https://img.shields.io/badge/R-%3E%3D4.0-blue)](https://www.r-project.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ## Overview
 
-The **Metabolic Atlas of Progression to Diabetes (MAP-D)** is a comprehensive proteomics analysis pipeline that maps patient progression from a healthy metabolic state to Type 2 Diabetes (T2D). This repository contains the complete computational framework used in our manuscript.
+The **Metabolic Atlas of the Proteome in Diabetes (MAP-D)** is a comprehensive proteomics analysis pipeline that maps patient progression from a healthy metabolic state to Type 2 Diabetes (T2D). This repository contains the complete computational framework used in our manuscript.
 
 MAP-D leverages proteomic data on 2,923 proteins measured in a median of 47,963 UK Biobank participants to compute associations with hallmarks of metabolic disease across normoglycemia, prediabetes, and type 2 diabetes populations.
 
